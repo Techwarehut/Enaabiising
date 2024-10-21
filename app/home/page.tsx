@@ -10,7 +10,7 @@ export default function Home() {
     <main className="max-w-8xl">
       <Header />
 
-      <section className="flex flex-col max-w-8xl items-center justify-center  m-8">
+      <section className="flex flex-col max-w-8xl items-center justify-center m-8">
         <div className="flex flex-col items-center justify-center mb-2 max-w-md">
           <div>
             <h1 className="text-4xl font-bold mb-4 text-center">
