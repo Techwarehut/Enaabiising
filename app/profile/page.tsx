@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import Header from "@/components/Header";
@@ -19,7 +18,7 @@ export default function Profile() {
           </Link>
 
           <div className="flex relative">
-            <Image
+            <img
               src="/assets/images/user.jpg"
               alt="Profile Image"
               width={100}

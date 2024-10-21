@@ -1,7 +1,5 @@
 // app/home.tsx or pages/home.tsx
 
-import Image from "next/image";
-
 import Link from "next/link";
 import { Card, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -47,7 +45,7 @@ export default function Home() {
           </div>
 
           <div className="flex justify-center w-full md:w-auto">
-            <Image
+            <img
               src="/assets/images/h-img.png"
               alt=""
               width={500}

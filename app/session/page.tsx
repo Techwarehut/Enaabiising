@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import Image from "next/image";
+
 import Link from "next/link";
 
 export default function SessionPage() {

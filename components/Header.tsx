@@ -1,13 +1,13 @@
 // components/Header.tsx
 import React from "react";
-import Image from "next/image";
+
 import Link from "next/link";
 
 const Header = () => {
   return (
     <header className="flex items-center justify-between p-4">
       <div className="t-logo">
-        <Image
+        <img
           src="/assets/images/logo.png"
           alt="Logo"
           width={300}
@@ -18,7 +18,7 @@ const Header = () => {
       <div className="flex items-center">
         <div>
           <Link href="/profile">
-            <Image
+            <img
               src="/assets/images/user.jpg"
               alt="User Profile"
               width={50}
