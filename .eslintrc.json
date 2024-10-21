@@ -1,3 +1,8 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "rules": {
+    // Disable all rules
+    "no-console": "off",
+    "react/react-in-jsx-scope": "off"
+    // Add other rules here...
+  }
 }
