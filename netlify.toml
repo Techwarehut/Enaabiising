@@ -1,6 +1,6 @@
 [build]
   command = "npm run build" # or "yarn build"
-  publish = "out" # The output directory for static sites; if using Next.js with static export
+  publish = ".next" # The output directory for static sites; if using Next.js with static export
 
 # Redirects and rewrites (if needed)
 [[redirects]]
