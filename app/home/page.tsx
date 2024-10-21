@@ -26,7 +26,7 @@ export default function Home() {
         </div>
         <div className="flex flex-col-reverse md:flex-row items-center gap-4">
           <div className="flex flex-col max-w-4xl w-full">
-            <Card className="flex flex-row p-8 mb-8 bg-[#E9AEFE] items-center justify-center shadow-lg gap-2 border border-black shadow-black max-w-lg">
+            <Card className="flex flex-row p-8 mb-8 bg-[#E9AEFE] items-center justify-center shadow-lg gap-2 border-2 border-black shadow-black max-w-lg">
               <div>
                 <h2 className="text-2xl font-bold">Conjugagtegate</h2>
                 <p className="text-gray-600 text-sm">
@@ -39,7 +39,7 @@ export default function Home() {
               </Link>
             </Card>
 
-            <Card className="flex-1 p-12 mb-8 bg-[#F1F2F6] shadow-lg shadow-black border border-black max-w-lg">
+            <Card className="flex-1 p-12 mb-8 bg-[#F1F2F6] shadow-lg shadow-black border-2 border-black max-w-lg">
               <CardTitle className="text-center">MORE COMING</CardTitle>
             </Card>
           </div>

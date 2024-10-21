@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="flex-1 flex items-center w-full max-w-6xl justify-center p-12 mx-8">
-      <div className="flex flex-col items-center justify-center bg-white p-12 w-full max-w-8xl rounded shadow-md  border border-black">
+      <div className="flex flex-col items-center justify-center bg-white p-12 w-full max-w-8xl rounded shadow-md  border-2 border-black">
         <div className="flex-col text-center mb-8">
           <img
             src="/assets/images/logo.png" // Path starts with a slash

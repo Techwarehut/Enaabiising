@@ -1,6 +1,14 @@
 import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 import Link from "next/link";
 
@@ -11,7 +19,7 @@ export default function SessionPage() {
     <main className="flex-1 flex-col items-center justify-center w-full max-w-6xl ">
       <Header />
       <section className="flex-1 flex-col items-center w-full max-w-6xl justify-center p-12 ">
-        <div className="flex flex-col items-center justify-center bg-white p-12 w-full max-w-8xl rounded shadow-md gap-4 border border-black">
+        <div className="flex flex-col items-center justify-center bg-white p-12 w-full max-w-8xl rounded shadow-md gap-4 border-2 border-black">
           <Link href="/home">
             <div className="flex flex-row text-center gap-2 text-black">
               <ArrowLeft />
@@ -40,16 +48,23 @@ export default function SessionPage() {
 
             <p className="text-center text-gray-600 mt-4">
               or
-              <Button variant="link" className="text-blue-500 underline">
-                View Instructions
-              </Button>
+              <Link href="/instructions">
+                <Button variant="link" className="text-blue-800 underline">
+                  View Instructions
+                </Button>
+              </Link>
             </p>
           </div>
         </div>
         <div className="flex items-center justify-center mt-8">
-          <Button variant="link" className="text-black font-bold text-center ">
-            Log out
-          </Button>
+          <Link href="/">
+            <Button
+              variant="link"
+              className="text-black font-bold text-center "
+            >
+              Log out
+            </Button>
+          </Link>
         </div>
       </section>
     </main>
