@@ -3,6 +3,7 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import { ArrowLeft, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export default function Profile() {
   return (
@@ -18,7 +19,7 @@ export default function Profile() {
           </Link>
 
           <div className="flex relative">
-            <img
+            <Image
               src="/assets/images/user.jpg"
               alt="Profile Image"
               width={100}

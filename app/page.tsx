@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="flex-1 flex items-center w-full max-w-6xl justify-center p-12 mx-8">
-      <div className="flex flex-col items-center justify-center bg-white p-12 w-full max-w-8xl rounded shadow-md  border-2 border-black">
+    <main className="flex items-center justify-center w-full p-4 md:p-12">
+      <div className="flex flex-col items-center justify-center bg-white p-12 w-full rounded shadow-md  border-2 border-black">
         <div className="flex-col text-center mb-8">
-          <img
+          <Image
             src="/assets/images/logo.png" // Path starts with a slash
             alt="Logo"
             width={450} // Set your desired width
@@ -22,20 +23,23 @@ export default function Home() {
             </p> */}
         </div>
         <div className="flex-col text-center items-center justify-center">
-          <form className="space-y-4">
-            <input
-              type="email"
-              className="w-full max-w-md px-4 py-2 border-b-2 border-black focus:outline-none focus:border-black" // Increased border width
-              placeholder="Email"
-              required
-            />
-
-            <input
-              type="password"
-              className="w-full max-w-md px-4 py-2 border-b-2 border-black focus:outline-none focus:border-black" // No blue outline, border remains black
-              placeholder="Password"
-              required
-            />
+          <form className="flex-col space-y-4">
+            <div>
+              <input
+                type="email"
+                className="w-full max-w-md px-4 py-2 border-b-2 border-black focus:outline-none focus:border-black" // Increased border width
+                placeholder="Email"
+                required
+              />
+            </div>
+            <div>
+              <input
+                type="password"
+                className="w-full max-w-md px-4 py-2 border-b-2 border-black focus:outline-none focus:border-black" // No blue outline, border remains black
+                placeholder="Password"
+                required
+              />
+            </div>
 
             <Link href="/home">
               <Button size="lg" className="w-full max-w-md p-6 mt-6">

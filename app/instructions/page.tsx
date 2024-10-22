@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import { Separator } from "@radix-ui/react-separator";
 import { ArrowLeft } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 const alternatingContent = [
@@ -65,7 +66,7 @@ const Instructions = () => {
                     index % 2 === 0 ? "border-r-2 " : "border-l-2"
                   }`}
                 >
-                  <img
+                  <Image
                     src={item.imgSrc}
                     alt={item.title}
                     width={300}

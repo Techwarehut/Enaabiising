@@ -44,8 +44,9 @@ export default function SessionPage() {
               placeholder="Name"
               required
             />
-            <Button className="w-full p-6">START SESSION</Button>
-
+            <Link href="/sessionstart">
+              <Button className="w-full p-6">START SESSION</Button>
+            </Link>
             <p className="text-center text-gray-600 mt-4">
               or
               <Link href="/instructions">

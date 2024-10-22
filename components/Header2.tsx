@@ -2,11 +2,12 @@
 import React from "react";
 
 import Link from "next/link";
+import { Button } from "./ui/button";
 import Image from "next/image";
 
-const Header = () => {
+const Header2 = () => {
   return (
-    <header className="flex items-center justify-between p-4 gap-12">
+    <header className="flex items-center justify-between p-4">
       <div className="t-logo">
         <Image
           src="/assets/images/logo.png"
@@ -19,19 +20,16 @@ const Header = () => {
       <div className="flex items-center">
         <div>
           <Link href="/profile">
-            <img
-              src="/assets/images/user.jpg"
-              alt="User Profile"
-              width={50}
-              height={50}
-              className="rounded-full border-2 border-black"
-            />
+            <Button variant="ghost" className="font-bold">
+              Export PDF
+            </Button>
           </Link>
         </div>
-
-        <div className="user-text ml-2 whitespace-nowrap hidden md:block">
-          <Link href="/profile" className="font-bold">
-            My Profile
+        <div className="user-text ml-2">
+          <Link href="/">
+            <Button variant="ghost" className="font-bold">
+              Log out
+            </Button>
           </Link>
         </div>
       </div>
@@ -39,4 +37,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Header2;

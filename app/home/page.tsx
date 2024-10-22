@@ -4,10 +4,11 @@ import Link from "next/link";
 import { Card, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
+import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="max-w-6xl">
+    <main className="flex-col items-center justify-center w-full p-4 md:p-12">
       <Header />
 
       <section className="flex flex-col max-w-8xl items-center justify-centers m-8">
@@ -45,7 +46,7 @@ export default function Home() {
           </div>
 
           <div className="flex justify-center w-full md:w-auto">
-            <img
+            <Image
               src="/assets/images/h-img.png"
               alt=""
               width={500}
