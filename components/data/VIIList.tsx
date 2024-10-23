@@ -51,3 +51,5 @@ const viiWords = [
   "minookmi",
   "dagwaagi",
 ];
+
+export default viiWords;

@@ -50,3 +50,5 @@ const vtaWords = [
   "Zaagi’",
   "Nasaaknamaw",
 ];
+
+export default vtaWords;

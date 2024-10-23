@@ -6,13 +6,14 @@ import Image from "next/image";
 
 const Header = () => {
   return (
-    <header className="flex items-center justify-between p-4 gap-12">
-      <div className="t-logo">
+    <header className="flex items-center justify-between p-4 gap-24">
+      <div>
         <Image
           src="/assets/images/logo.png"
           alt="Logo"
+          priority
           width={300}
-          height={100}
+          height={80}
         />
       </div>
 
@@ -22,8 +23,8 @@ const Header = () => {
             <img
               src="/assets/images/user.jpg"
               alt="User Profile"
-              width={50}
-              height={50}
+              width={40}
+              height={40}
               className="rounded-full border-2 border-black"
             />
           </Link>

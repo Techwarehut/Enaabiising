@@ -8,10 +8,9 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex-col items-center justify-center w-full p-4 md:p-12">
+    <main className="flex-1 flex-col items-center justify-center w-full max-w-6xl">
       <Header />
-
-      <section className="flex flex-col max-w-8xl items-center justify-centers m-8">
+      <section className="flex flex-col h-full items-center justif-center w-full max-w-6xl p-4 md:p-12 ">
         <div className="flex flex-col items-center justify-center mb-2 max-w-md">
           <div>
             <h1 className="text-4xl font-bold mb-4 text-center">
@@ -25,9 +24,9 @@ export default function Home() {
             </p>
           </div>
         </div>
-        <div className="flex flex-col-reverse md:flex-row items-center gap-4">
-          <div className="flex flex-col max-w-4xl w-full">
-            <Card className="flex flex-row p-8 mb-8 bg-[#E9AEFE] items-center justify-center shadow-lg gap-2 border-2 border-black shadow-black max-w-lg">
+        <div className="flex flex-col-reverse md:flex-row items-center gap-4 mt-8">
+          <div className="flex flex-col  w-full">
+            <Card className="flex flex-row px-4 md:px-8 py-4 md:py-8 mb-8 bg-[#E9AEFE] items-center justify-center shadow-3xl gap-2 border-2 border-black shadow-black max-w-lg">
               <div>
                 <h2 className="text-2xl font-bold">Conjugagtegate</h2>
                 <p className="text-gray-600 text-sm">
@@ -40,7 +39,7 @@ export default function Home() {
               </Link>
             </Card>
 
-            <Card className="flex-1 p-12 mb-8 bg-[#F1F2F6] shadow-lg shadow-black border-2 border-black max-w-lg">
+            <Card className="flex-1 p-12 mb-8 bg-[#F1F2F6] shadow-3xl shadow-black border-2 border-black max-w-lg">
               <CardTitle className="text-center">MORE COMING</CardTitle>
             </Card>
           </div>

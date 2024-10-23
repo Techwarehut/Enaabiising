@@ -33,9 +33,9 @@ const alternatingContent = [
 
 const Instructions = () => {
   return (
-    <main className="flex-1 flex-col items-center justify-center w-full max-w-6xl ">
+    <main className="flex-1 flex-col items-center justify-center w-full max-w-6xl">
       <Header />
-      <section className="flex-1 flex-col items-center w-full max-w-8xl justify-center p-12 ">
+      <section className="flex flex-col h-full items-center justif-center w-full max-w-6xl p-4 md:p-12 ">
         <div className="flex flex-col items-center justify-center bg-white p-12 w-full max-w-8xl rounded shadow-md gap-4 border-2 border-black">
           <Link href="/session">
             <div className="flex flex-row text-center gap-2 text-black">
@@ -45,7 +45,7 @@ const Instructions = () => {
           </Link>
           <div>
             <h1 className="text-4xl font-bold mb-4 text-center">
-              Conjugate Instructions
+              Conjugagtegate Instructions
             </h1>
             <p className="text-center text-gray-700 text-sm">
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
@@ -58,12 +58,14 @@ const Instructions = () => {
               <div
                 key={index}
                 className={`flex flex-wrap items-center ${
-                  index % 2 === 0 ? "flex-row " : "flex-row md:flex-row-reverse"
+                  index % 2 === 0
+                    ? "flex-col md:flex-row "
+                    : "flex-col md:flex-row-reverse"
                 }`}
               >
                 <div
                   className={`flex-1 items-center justify-center p-8 ${
-                    index % 2 === 0 ? "border-r-2 " : "border-l-2"
+                    index % 2 === 0 ? " md:border-r-2 " : "md:border-l-2"
                   }`}
                 >
                   <Image

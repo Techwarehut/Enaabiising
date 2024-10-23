@@ -16,9 +16,9 @@ export default function SessionPage() {
   const isModalOpen = false;
 
   return (
-    <main className="flex-1 flex-col items-center justify-center w-full max-w-6xl ">
+    <main className="flex-1 flex-col items-center justify-center w-full max-w-6xl">
       <Header />
-      <section className="flex-1 flex-col items-center w-full max-w-6xl justify-center p-12 ">
+      <section className="flex flex-col h-full items-center justif-center w-full max-w-6xl p-4 md:p-12 mt-12 md:mt-2">
         <div className="flex flex-col items-center justify-center bg-white p-12 w-full max-w-8xl rounded shadow-md gap-4 border-2 border-black">
           <Link href="/home">
             <div className="flex flex-row text-center gap-2 text-black">
@@ -48,12 +48,10 @@ export default function SessionPage() {
               <Button className="w-full p-6">START SESSION</Button>
             </Link>
             <p className="text-center text-gray-600 mt-4">
-              or
-              <Link href="/instructions">
-                <Button variant="link" className="text-blue-800 underline">
-                  View Instructions
-                </Button>
-              </Link>
+              or{" "}
+              <a href="/instructions" className="text-blue-800 underline">
+                View Instructions
+              </a>
             </p>
           </div>
         </div>
@@ -61,7 +59,7 @@ export default function SessionPage() {
           <Link href="/">
             <Button
               variant="link"
-              className="text-black font-bold text-center "
+              className="text-black text-lg font-bold text-center "
             >
               Log out
             </Button>

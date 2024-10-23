@@ -50,3 +50,5 @@ const vtiWords = [
   "nasaaknan",
   "aatebidoon",
 ];
+
+export default vtiWords;
