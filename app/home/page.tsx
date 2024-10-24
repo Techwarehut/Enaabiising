@@ -10,8 +10,8 @@ export default function Home() {
   return (
     <main className="flex-1 flex-col items-center justify-center w-full max-w-6xl">
       <Header />
-      <section className="flex flex-col h-full items-center justif-center w-full max-w-6xl p-4 md:p-12 ">
-        <div className="flex flex-col items-center justify-center mb-2 max-w-md">
+      <section className="flex flex-col h-full items-center justif-center w-full max-w-6xl px-4 md:px-12">
+        <div className="flex flex-col items-center justify-center max-w-md">
           <div>
             <h1 className="text-4xl font-bold mb-4 text-center">
               Learn <span style={{ color: "#3B57E5" }}>Ojibwe</span> and Improve
@@ -24,8 +24,8 @@ export default function Home() {
             </p>
           </div>
         </div>
-        <div className="flex flex-col-reverse md:flex-row items-center gap-4 mt-8">
-          <div className="flex flex-col  w-full">
+        <div className="flex flex-col-reverse md:flex-row items-center gap-4 m-12 ">
+          <div className="flex flex-col  mx-4">
             <Card className="flex flex-row px-4 md:px-8 py-4 md:py-8 mb-8 bg-[#E9AEFE] items-center justify-center shadow-3xl gap-2 border-2 border-black shadow-black max-w-lg">
               <div>
                 <h2 className="text-2xl font-bold">Conjugagtegate</h2>
@@ -45,12 +45,16 @@ export default function Home() {
           </div>
 
           <div className="flex justify-center w-full md:w-auto">
-            <Image
-              src="/assets/images/h-img.png"
-              alt=""
-              width={500}
-              height={500}
-            />
+            <div className="flex relative h-96 w-96 m-4">
+              <Image
+                src="/assets/images/h-img.png"
+                alt="Logo"
+                priority
+                fill
+                sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+                style={{ objectFit: "contain" }}
+              />
+            </div>
           </div>
         </div>
       </section>

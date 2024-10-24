@@ -18,26 +18,31 @@ export default function Profile() {
             </div>
           </Link>
 
-          <div className="flex relative">
-            <Image
-              src="/assets/images/user.jpg"
-              alt="Profile Image"
-              width={100}
-              height={100}
-              className="rounded-full"
-            />
-            <span className="absolute bottom-0 right-0 p-1 bg-white rounded-full border border-black">
+          <div className="flex ">
+            <div className="flex relative h-40 w-40 ">
+              <Image
+                src="/assets/images/user.jpg"
+                alt="Logo"
+                priority
+                fill
+                sizes="(max-width: 640px) 25vw, (max-width: 768px) 20vw, 160px"
+                style={{ objectFit: "cover" }}
+                className="rounded-full"
+              />
+            </div>
+
+            {/*  <span className="absolute bottom-0 right-0 p-1 bg-white rounded-full border border-black">
               <a href="javascript:void(0)" className="text-gray-600">
                 <Pencil size={14} />
               </a>
-            </span>
+            </span> */}
           </div>
           <div>
             <h1 className="text-2xl md:text-4xl flex items-center justify-center gap-2 font-bold">
               Bella Rowssie{" "}
-              <a href="javascript:void(0)" className="text-gray-600">
+              {/* <a href="javascript:void(0)" className="text-gray-600">
                 <Pencil size={24} />
-              </a>
+              </a> */}
             </h1>
 
             <h5 className="text-center text-gray-500">
@@ -46,16 +51,18 @@ export default function Profile() {
           </div>
 
           <div className="w-full max-w-sm ">
-            <Button variant="secondary" className="w-full p-6">
-              CHANGE PASSWORD
-            </Button>
+            <Link href={"/"}>
+              <Button variant="secondary" className="w-full p-6">
+                LOG OUT
+              </Button>
+            </Link>
 
-            <p className="text-center text-gray-600 mt-4">
+            {/* <p className="text-center text-gray-600 mt-4">
               Click here to{" "}
               <a href="/" className="text-destructive underline">
                 Log out
               </a>
-            </p>
+            </p> */}
           </div>
         </div>
       </section>

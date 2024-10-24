@@ -7,26 +7,31 @@ import Image from "next/image";
 const Header = () => {
   return (
     <header className="flex items-center justify-between p-4 gap-24">
-      <div>
+      <div className="flex relative h-20 w-60  ">
         <Image
           src="/assets/images/logo.png"
           alt="Logo"
           priority
-          width={300}
-          height={80}
+          fill
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 30vw, 200px"
+          style={{ objectFit: "contain" }}
         />
       </div>
 
       <div className="flex items-center">
         <div>
           <Link href="/profile">
-            <img
-              src="/assets/images/user.jpg"
-              alt="User Profile"
-              width={40}
-              height={40}
-              className="rounded-full border-2 border-black"
-            />
+            <div className="flex relative h-12 w-12">
+              <Image
+                src="/assets/images/user.jpg"
+                alt="Logo"
+                priority
+                fill
+                style={{ objectFit: "contain" }}
+                sizes="(max-width: 480px) 20vw, (max-width: 768px) 10vw, 40px"
+                className="rounded-full border-2 border-black"
+              />
+            </div>
           </Link>
         </div>
 

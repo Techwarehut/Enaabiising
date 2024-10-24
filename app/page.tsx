@@ -7,14 +7,18 @@ export default function Home() {
     <main className="flex flex-col h-full items-center justify-center w-full max-w-6xl">
       <section className="flex flex-col h-full items-center justif-center w-full max-w-6xl p-4 md:p-12 mt-24 md:mt-12">
         <div className="flex flex-col items-center justify-center bg-white p-12 w-full max-w-8xl rounded shadow-md gap-4 border-2 border-black">
-          <div className="flex-col text-center mb-8">
+          {/* <div className="flex-col text-center mb-8"> */}
+          <div className="flex relative h-28 md:h-36 w-72 md:w-96">
             <Image
-              src="/assets/images/logo.png" // Path starts with a slash
+              src="/assets/images/logo.png"
               alt="Logo"
-              width={450} // Set your desired width
-              height={150} // Set your desired height
-              className="mx-auto mb-4"
+              priority
+              fill
+              sizes="(max-width: 640px) 50vw, (max-width: 768px) 30vw, 200px"
+              style={{ objectFit: "contain" }}
             />
+          </div>
+          <div className="flex-col w-full text-center mb-8">
             <h1 className="text-4xl font-bold mb-4">Sign In</h1>
             {/*  <p className="text-gray-600">
               Don't have an account?{" "}
@@ -23,7 +27,7 @@ export default function Home() {
               </a>
             </p> */}
           </div>
-          <div className="flex-col text-center items-center justify-center">
+          <div className="flex-col w-full  text-center items-center justify-center">
             <form className="flex-col space-y-4">
               <div>
                 <input
@@ -48,12 +52,12 @@ export default function Home() {
                 </Button>
               </Link>
 
-              <p className="text-center text-gray-600">
+              {/* <p className="text-center text-gray-600">
                 Forgot your password?{" "}
                 <a href="#" className="text-blue-800 underline">
                   Reset it now
                 </a>
-              </p>
+              </p> */}
             </form>
           </div>
         </div>

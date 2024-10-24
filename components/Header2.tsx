@@ -8,18 +8,18 @@ import Image from "next/image";
 const Header2 = () => {
   return (
     <header className="flex items-center justify-between p-4 gap-12">
-      <div className="t-logo">
+      <div className="flex relative h-20 w-60  ">
         <Image
           src="/assets/images/logo.png"
           alt="Logo"
-          priority // Add this prop to prioritize the image load
-          width={300}
-          height={100}
-          style={{ height: "auto" }} // To avoid distortion and maintain aspect ratio
+          priority
+          fill
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 30vw, 200px"
+          style={{ objectFit: "contain" }}
         />
       </div>
 
-      <div className="flex items-center">
+      <div className="flex flex-col md:flex-row  items-center">
         <div>
           <Link href="/profile">
             <Button variant="ghost" className="font-bold">

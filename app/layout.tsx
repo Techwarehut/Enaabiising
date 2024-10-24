@@ -33,7 +33,7 @@ export default function RootLayout({
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
         <title>Enaabiising : login</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        {/* <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
@@ -42,7 +42,7 @@ export default function RootLayout({
         <link
           href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300;400;500;600;700;800;900&display=swap"
           rel="stylesheet"
-        />
+        /> */}
       </Head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen flex flex-col items-center`}

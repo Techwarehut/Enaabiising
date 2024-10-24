@@ -15,6 +15,7 @@ import {
   MenubarShortcut,
   MenubarTrigger,
 } from "@/components/ui/menubar";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 import {
   Table,
@@ -36,6 +37,7 @@ export default function Session() {
   const [selectedPerson, setSelectedPerson] = useState<string>("");
   const [selectedTense, setSelectedTense] = useState<string>("");
   const [selectedPerson2, setSelectedPerson2] = useState<string>("");
+  const [verbConjugated, setVerbConjugated] = useState<boolean>(false);
 
   const formLists: Record<string, Record<string, string[]>> = {
     VAI: { A: vaiWords, B: vaiWords, C: vaiWords },
@@ -120,7 +122,7 @@ export default function Session() {
             {["VAI", "VII", "VTA", "VTI"].map((type, index) => (
               <div
                 key={type}
-                className={`flex w-full p-2 -mr-1 hover:bg-[#D4FCFC] ${
+                className={`flex w-full p-2  hover:bg-[#D4FCFC] ${
                   index === 0
                     ? "bg-[#F1CBFF] rounded-l-md border-r border-black"
                     : index === 1
@@ -162,21 +164,24 @@ export default function Session() {
                 <div className="border-b-1 p-2 border-black">
                   <h3 className="font-bold text-center">Word Bank</h3>
                 </div>
-                <div className="bg-gray-100 p-2 rounded">
-                  {currentList.map((word, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center justify-center"
-                    >
-                      <Button
-                        variant="ghost"
-                        onClick={() => setSelectedWord(word)}
+                <ScrollArea className="w-full whitespace-nowrap rounded-md border items-center justify-center">
+                  <div className="bg-gray-100 p-2 rounded">
+                    {currentList.map((word, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center justify-center"
                       >
-                        {word}
-                      </Button>
-                    </div>
-                  ))}
-                </div>
+                        <Button
+                          variant="ghost"
+                          onClick={() => setSelectedWord(word)}
+                        >
+                          {word}
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                  <ScrollBar />
+                </ScrollArea>
               </div>
             </div>
 
@@ -203,6 +208,7 @@ export default function Session() {
                 setSelectedPerson={setSelectedPerson}
                 setSelectedTense={setSelectedTense}
                 setSelectedPerson2={setSelectedPerson2}
+                verbConjugated={verbConjugated}
               />
             </div>
           </div>
@@ -218,25 +224,29 @@ export default function Session() {
             style={{ overflowX: "auto" }}
             className="flex w-full md:w-3/4 self-start h-8 bg-[#7EE6D6] min-h-28 rounded-lg border border-black shadow-3xl shadow-black"
           >
-            <div className="flex w-full flex-row items-center justify-center px-2 gap-4">
-              {[
-                selectedPerson,
-                selectedTense,
-                selectedWord,
-                selectedPerson2,
-              ].map((item, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col h-full flex-col items-center justify-between py-6 "
-                >
-                  <span className="text-md md:text-lg">{item}</span>
-                  {/* Prevents layout shift */}
-                  <p className="text-2xl whitespace-nowrap">
-                    -------------------
-                  </p>
-                </div>
-              ))}
-            </div>
+            <ScrollArea className="w-full whitespace-nowrap rounded-md border items-center justify-center">
+              <div className="flex h-full flex-row items-center justify-center px-2 gap-4">
+                {/* <div className="flex w-max space-x-4 p-4"> */}
+                {[
+                  selectedPerson,
+                  selectedTense,
+                  selectedWord,
+                  selectedPerson2,
+                ].map((item, index) => (
+                  <div
+                    key={index}
+                    className="flex flex-col h-full flex-col items-center justify-between py-6 "
+                  >
+                    <span className="text-md md:text-lg">{item}</span>
+                    {/* Prevents layout shift */}
+                    <p className="text-2xl whitespace-nowrap">
+                      -------------------
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <ScrollBar orientation="horizontal" />
+            </ScrollArea>
           </div>
 
           <div className="overflow-x-auto w-full border border-black rounded-lg shadw-lg shadow-black">
