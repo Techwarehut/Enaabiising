@@ -6,8 +6,17 @@ export default function Home() {
   return (
     <main className="flex flex-col h-full items-center justify-center w-full max-w-6xl">
       <section className="flex flex-col h-full items-center justif-center w-full max-w-6xl p-4 md:p-12 mt-24 md:mt-12">
-        <div className="flex flex-col items-center justify-center bg-white p-12 w-full max-w-8xl rounded shadow-md gap-4 border-2 border-black">
+        <div className="flex  flex-col items-center justify-center bg-white p-12 w-full max-w-8xl rounded shadow-md gap-4 border-2 border-black">
           {/* <div className="flex-col text-center mb-8"> */}
+          {/* <div className="flex absolute top-28 md:top-20 -right-6 md:right-28 self-end -m-12 -p-12 h-48 md:h-80 w-48 md:w-80">
+            <Image
+              src="/assets/images/bulb.png"
+              alt="kids learning on a laptop"
+              priority
+              fill
+              style={{ objectFit: "cover" }}
+            />
+          </div> */}
           <div className="flex relative h-28 md:h-36 w-72 md:w-96">
             <Image
               src="/assets/images/logo.png"
@@ -32,7 +41,7 @@ export default function Home() {
               <div>
                 <input
                   type="email"
-                  className="w-full max-w-md px-4 py-2 border-b-2 border-black focus:outline-none focus:border-black" // Increased border width
+                  className="w-full max-w-md px-4 py-2 border-b-2 border-black focus:outline-none rounded-none focus:border-black" // Increased border width
                   placeholder="Email"
                   required
                 />
@@ -40,7 +49,7 @@ export default function Home() {
               <div>
                 <input
                   type="password"
-                  className="w-full max-w-md px-4 py-2 border-b-2 border-black focus:outline-none focus:border-black" // No blue outline, border remains black
+                  className="w-full max-w-md px-4 py-2 border-b-2 border-black focus:outline-none rounded-none focus:border-black" // No blue outline, border remains black
                   placeholder="Password"
                   required
                 />

@@ -45,10 +45,10 @@ export default function Home() {
           </div>
 
           <div className="flex justify-center w-full md:w-auto">
-            <div className="flex relative h-96 w-96 m-4">
+            <div className="flex relative h-80 md:h-96 w-80 md:w-96 m-4">
               <Image
                 src="/assets/images/h-img.png"
-                alt="Logo"
+                alt="kids learning on a laptop"
                 priority
                 fill
                 sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"

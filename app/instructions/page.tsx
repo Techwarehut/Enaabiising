@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import NameInput from "@/components/NameInput";
 import { Separator } from "@radix-ui/react-separator";
 import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
@@ -95,6 +96,7 @@ const Instructions = () => {
               </div>
             ))}
           </div>
+          <NameInput showInstructions={false} />
         </div>
       </section>
     </main>

@@ -82,11 +82,12 @@ body {
   }
 
   .dark ::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.3); /* Light scrollbar thumb */
+    background-color: rgba(0, 0, 0, 0.5); /* Color of the scrollbar thumb */
+    border-radius: 10px; /* Rounded edges */
   }
 
   .dark ::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1); /* Dark scrollbar track */
+    background: rgba(0, 0, 0, 0.1); /* Color of the scrollbar track */
   }
 }
 

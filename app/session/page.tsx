@@ -1,16 +1,9 @@
 import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 
 import Link from "next/link";
+import NameInput from "@/components/NameInput";
 
 export default function SessionPage() {
   const isModalOpen = false;
@@ -37,23 +30,7 @@ export default function SessionPage() {
               </p>
             </div>
           </div>
-          <div className="w-full max-w-sm ">
-            <input
-              type="name"
-              className="w-full max-w-md px-4 mb-4 py-2 border-b-2 border-black focus:outline-none focus:border-black" // Increased border width
-              placeholder="Name"
-              required
-            />
-            <Link href="/sessionstart">
-              <Button className="w-full p-6">START SESSION</Button>
-            </Link>
-            <p className="text-center text-gray-600 mt-4">
-              or{" "}
-              <a href="/instructions" className="text-blue-800 underline">
-                View Instructions
-              </a>
-            </p>
-          </div>
+          <NameInput />
         </div>
         <div className="flex items-center justify-center mt-8">
           <Link href="/">

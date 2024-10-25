@@ -24,10 +24,10 @@ const Header = () => {
             <div className="flex relative h-12 w-12">
               <Image
                 src="/assets/images/user.jpg"
-                alt="Logo"
+                alt="profile picture"
                 priority
                 fill
-                style={{ objectFit: "contain" }}
+                style={{ objectFit: "cover" }}
                 sizes="(max-width: 480px) 20vw, (max-width: 768px) 10vw, 40px"
                 className="rounded-full border-2 border-black"
               />

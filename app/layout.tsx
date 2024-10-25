@@ -32,7 +32,7 @@ export default function RootLayout({
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
-        <title>Enaabiising : login</title>
+        <title>Enaabiising</title>
         {/* <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"

@@ -1,19 +1,11 @@
-import React, { useState } from "react";
-import { Button } from "./ui/button";
+import React, { useEffect, useState } from "react";
+import { Button } from "../ui/button";
+import { TableProps } from "../TableTypes";
+import shouldEnableButton from "@/lib/utils";
+import PersonButton from "../TableComponents/PersonButton";
+import TenseButtonGroup from "../TableComponents/TenseButtonGroup";
 
-// Define the props interface
-interface VaiTableProps {
-  selectedWord: string;
-  selectedPerson: string;
-  selectedTense: string;
-  selectedPerson2: string;
-  setSelectedPerson: (person: string) => void;
-  setSelectedTense: (tense: string) => void;
-  setSelectedPerson2: (person: string) => void;
-  verbConjugated: boolean; // New prop to handle reset
-}
-
-const VaiTable: React.FC<VaiTableProps> = ({
+const VaiFormATable: React.FC<TableProps> = ({
   selectedWord,
   selectedPerson,
   selectedTense,
@@ -25,51 +17,24 @@ const VaiTable: React.FC<VaiTableProps> = ({
 }) => {
   const [activeRow, setActiveRow] = useState<number>(-1);
 
-  const shouldEnableButton = (
-    rightWord: string,
-    leftWord: string,
-    rule: string,
-    checkStart: boolean = true
-  ): boolean => {
-    const isVowel = (char: string) => "AEIOUaeiou".includes(char);
-    const isShortVowel = (char: string) => "aio".includes(char);
-
-    const parseLetters = (rule: string) => {
-      const match = rule.match(/\(([^)]+)\)/);
-      return match ? match[1].split(",").map((letter) => letter.trim()) : [];
-    };
-
-    const letters = parseLetters(rule);
-
-    switch (rule) {
-      case "(V)":
-        return checkStart
-          ? rightWord.length > 0 && isVowel(rightWord[0])
-          : leftWord.length > 0 && isVowel(leftWord[leftWord.length - 1]);
-
-      case "(Drop short vowels: a, i, o)":
-        return (
-          leftWord.length > 0 && isShortVowel(leftWord[leftWord.length - 1])
-        );
-
-      default:
-        const startsWithLetter = checkStart
-          ? letters.includes(rightWord[0])
-          : letters.includes(leftWord[leftWord.length - 1]);
-        return startsWithLetter;
-    }
-  };
-
   const handleRowClick = (rowIndex: number) => {
     setActiveRow(rowIndex);
   };
 
   const resetRows = () => {
-    // Reset all rows to enabled
-    if (verbConjugated) {
-      setActiveRow(-1);
-    }
+    setActiveRow(-1);
   };
+
+  useEffect(() => {
+    resetRows(); // Call resetRows whenever selectedWord changes
+  }, [selectedWord]);
+
+  useEffect(() => {
+    console.log("Iam here", verbConjugated);
+    if (verbConjugated) {
+      resetRows(); // Call resetRows when verbConjugated changes and is true
+    }
+  }, [verbConjugated]);
 
   return (
     <div
@@ -98,89 +63,36 @@ const VaiTable: React.FC<VaiTableProps> = ({
             <td className="border border-black">I</td>
             <td className="border border-black">
               {/* Button for 'ni-' */}
-              <Button
-                variant="outline"
-                className="mb-2"
+              <PersonButton
+                label="ni"
                 onClick={() => {
                   setSelectedPerson("ni-");
                   handleRowClick(0); // Disable other rows
                 }}
-                disabled={activeRow != -1 && activeRow != 0}
-              >
-                ni
-              </Button>
-              <br />
-              {/* Button for 'in-' */}
-              <Button
-                variant="outline"
+                disabled={activeRow !== -1 && activeRow !== 0}
+              />
+              <PersonButton
+                label="in"
                 onClick={() => {
                   setSelectedPerson("in-");
-                  handleRowClick(0); // Disable other rows
+                  handleRowClick(0);
                 }}
                 disabled={
                   !shouldEnableButton(selectedTense, "", "(b,d,g)", true) ||
-                  (activeRow != -1 && activeRow != 0)
+                  (activeRow !== -1 && activeRow !== 0)
                 }
-              >
-                in
-              </Button>{" "}
-              -(b,d,g)
+                suffix=" -(b,d,g)"
+              />
             </td>
             <td className="border border-black" rowSpan={2}>
-              {/* Button for 'gii-' */}
-              <Button
-                variant="outline"
-                className="mb-2"
-                onClick={() => {
-                  setSelectedTense("gii-");
-                  handleRowClick(0); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 0}
-              >
-                gii
-              </Button>
-              <br />
-              {/* Button for 'd-' */}
-              <Button
-                variant="outline"
-                className="mb-2"
-                onClick={() => {
-                  setSelectedTense("d-");
-                  handleRowClick(0); // Disable other rows
-                }}
-                disabled={
-                  !shouldEnableButton(selectedWord, "", "(V)", true) ||
-                  (activeRow != -1 && activeRow != 0)
-                }
-              >
-                d
-              </Button>{" "}
-              -(V)
-              <br />
-              {/* Button for 'wii-' */}
-              <Button
-                variant="outline"
-                className="mb-2"
-                onClick={() => {
-                  setSelectedTense("wii-");
-                  handleRowClick(0); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 0}
-              >
-                wii
-              </Button>
-              <br />
-              {/* Button for 'ga-' */}
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedTense("ga-");
-                  handleRowClick(0); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 0}
-              >
-                ga
-              </Button>
+              <TenseButtonGroup
+                labels={["gii", "d-(V)", "wii", "ga"]}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                rowIndex={0}
+                selectedWord={selectedWord}
+                setSelectedTense={setSelectedTense}
+              />
             </td>
             {/* VAI Cell */}
             <td className="border border-black" rowSpan={9}>
@@ -191,7 +103,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedPerson2("_");
+                  setSelectedPerson2("_", "replace", "V");
                   handleRowClick(0); // Disable other rows
                 }}
                 className="mb-2"
@@ -213,7 +125,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedPerson2("");
+                  setSelectedPerson2(" ", "append");
                   handleRowClick(0); // Disable other rows
                 }}
                 disabled={
@@ -249,11 +161,12 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedPerson2("_");
+                  setSelectedPerson2("_", "replace", "V");
                   handleRowClick(0); // Disable other rows
                 }}
+                className="mb-2"
                 disabled={
-                  shouldEnableButton(
+                  !shouldEnableButton(
                     "",
                     selectedWord,
                     "(Drop short vowels: a, i, o)",
@@ -275,7 +188,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedPerson("");
+                  setSelectedPerson(" ");
                   handleRowClick(1); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 1}
@@ -287,7 +200,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
                 variant="outline"
                 className="mb-1"
                 onClick={() => {
-                  setSelectedTense("gii-");
+                  setSelectedTense("gii-", "Past");
                   handleRowClick(1); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 1}
@@ -299,7 +212,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
                 variant="outline"
                 className="mb-1"
                 onClick={() => {
-                  setSelectedTense("");
+                  setSelectedTense(" ", "Present");
                   handleRowClick(1); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 1}
@@ -309,7 +222,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
                 variant="outline"
                 className="mb-1"
                 onClick={() => {
-                  setSelectedTense("wii-");
+                  setSelectedTense("wii-", "Future");
                   handleRowClick(1); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 1}
@@ -321,7 +234,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
                 variant="outline"
                 className="mb-1"
                 onClick={() => {
-                  setSelectedTense("da-");
+                  setSelectedTense("da-", "Future2");
                   handleRowClick(1); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 1}
@@ -334,7 +247,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
                 variant="outline"
                 className="mb-1"
                 onClick={() => {
-                  setSelectedTense("");
+                  setSelectedPerson2(" ", "append");
                   handleRowClick(1); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 1}
@@ -349,7 +262,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedPerson("");
+                  setSelectedPerson(" ");
                   handleRowClick(1); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 1}
@@ -360,7 +273,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedPerson2("-wan");
+                  setSelectedPerson2("-wan", "append");
                   handleRowClick(1); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 1}
@@ -371,7 +284,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedPerson2("-oon");
+                  setSelectedPerson2("-oon", "append");
                   handleRowClick(1); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 1}
@@ -388,7 +301,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedPerson("");
+                  setSelectedPerson(" ");
                   handleRowClick(1); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 1}
@@ -399,7 +312,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedPerson2("-oon");
+                  setSelectedPerson2("-oon", "append");
                   handleRowClick(1); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 1}
@@ -410,7 +323,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedPerson2("-im");
+                  setSelectedPerson2("-im", "append");
                   handleRowClick(1); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 1}
@@ -421,7 +334,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedPerson2("-am");
+                  setSelectedPerson2("-am", "append");
                   handleRowClick(1); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 1}
@@ -466,7 +379,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedTense("gii-");
+                  setSelectedTense("gii-", "Past");
                   handleRowClick(2); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 2}
@@ -478,7 +391,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedTense("d-");
+                  setSelectedTense("d-", "Present");
                   handleRowClick(2); // Disable other rows
                 }}
                 disabled={
@@ -494,7 +407,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedTense("wii-");
+                  setSelectedTense("wii-", "Future");
                   handleRowClick(2); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 2}
@@ -506,7 +419,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedTense("ga-");
+                  setSelectedTense("ga-", "Future2");
                   handleRowClick(2); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 2}
@@ -519,7 +432,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedPerson2("-min");
+                  setSelectedPerson2("-min", "append");
                   handleRowClick(2); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 2}
@@ -530,7 +443,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedPerson2("-imin");
+                  setSelectedPerson2("-imin", "append");
                   handleRowClick(2); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 2}
@@ -541,7 +454,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedPerson2("-amin");
+                  setSelectedPerson2("-amin", "append");
                   handleRowClick(2); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 2}
@@ -572,7 +485,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedPerson2("-min");
+                  setSelectedPerson2("-min", "append");
                   handleRowClick(2); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 2}
@@ -583,7 +496,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedPerson2("-imin");
+                  setSelectedPerson2("-imin", "append");
                   handleRowClick(2); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 2}
@@ -594,7 +507,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedPerson2("-amin");
+                  setSelectedPerson2("-amin", "append");
                   handleRowClick(2); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 2}
@@ -624,7 +537,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedPerson2("-oon");
+                  setSelectedPerson2("-oon", "append");
                   handleRowClick(2); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 2}
@@ -635,7 +548,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedPerson2("-im");
+                  setSelectedPerson2("-im", "append");
                   handleRowClick(2); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 2}
@@ -646,7 +559,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedPerson2("-am");
+                  setSelectedPerson2("-am", "append");
                   handleRowClick(2); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 2}
@@ -663,7 +576,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedPerson("");
+                  setSelectedPerson(" ");
                   handleRowClick(3); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 3}
@@ -673,7 +586,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedPerson("gii-");
+                  setSelectedTense("gii-", "Past");
                   handleRowClick(3); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 3}
@@ -685,7 +598,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedPerson("");
+                  setSelectedTense(" ", "Present");
                   handleRowClick(3); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 3}
@@ -695,7 +608,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedTense("wii-");
+                  setSelectedTense("wii-", "Future");
                   handleRowClick(3); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 3}
@@ -707,7 +620,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedTense("da-");
+                  setSelectedTense("da-", "Future");
                   handleRowClick(3); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 3}
@@ -720,7 +633,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedPerson2("-wag");
+                  setSelectedPerson2("-wag", "append");
                   handleRowClick(3); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 3}
@@ -731,7 +644,7 @@ const VaiTable: React.FC<VaiTableProps> = ({
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSelectedPerson2("-oog");
+                  setSelectedPerson2("-oog", "append");
                   handleRowClick(3); // Disable other rows
                 }}
                 disabled={activeRow != -1 && activeRow != 3}
@@ -742,10 +655,8 @@ const VaiTable: React.FC<VaiTableProps> = ({
           </tr>
         </tbody>
       </table>
-      {/* Reset button to re-enable all rows */}
-      {verbConjugated && <Button onClick={resetRows}>Reset Rows</Button>}
     </div>
   );
 };
 
-export default VaiTable;
+export default VaiFormATable;
