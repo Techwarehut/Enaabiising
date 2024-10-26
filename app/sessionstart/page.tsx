@@ -1,5 +1,6 @@
 "use client";
 
+import { Combobox } from "@/components/ComboBox";
 import vaiWords from "@/components/data/VAIList";
 import viiWords from "@/components/data/VIIList";
 import vtaWords from "@/components/data/VTAList";
@@ -72,6 +73,33 @@ export default function Session() {
     VTI: { A: vtiWords, B: vtiWords, C: vtiWords },
   };
 
+  const renderFormComponent = () => {
+    console.log(selectedType, selectedForm);
+    switch (selectedType) {
+      case "VAI":
+        if (selectedForm === "A FORM") {
+          return (
+            <VaiFormATable
+              selectedWord={selectedWord}
+              selectedPerson={selectedPerson}
+              selectedTense={selectedTense.tense}
+              selectedPerson2={selectedPerson2.person2}
+              setSelectedPerson={setSelectedPerson}
+              setSelectedTense={(tense, type) =>
+                setSelectedTense({ tense, type })
+              }
+              setSelectedPerson2={handlePerson2Change}
+              verbConjugated={verbConjugated}
+            />
+          );
+        }
+        // Handle B and C forms similarly
+        break;
+      // Handle VII, VTA, and VTI similarly
+      default:
+        return null;
+    }
+  };
   // Effect to check when to set verbConjugated to true
   useEffect(() => {
     if (
@@ -193,9 +221,10 @@ export default function Session() {
       const data: any = [];
 
       ["Past", "Present", "Future", "Future2"].forEach((tense) => {
-        const row = [tense];
+        const row = [tense === "Future2" ? "Future" : tense]; // Change "Future2" to "Future"
         ["A", "B", "C"].forEach((form) => {
-          row.push(conjugatedVerbs[form as Form][tense as Tense].join("\n"));
+          const verbs = conjugatedVerbs[form as Form][tense as Tense];
+          row.push(verbs ? verbs.join("\n") : ""); // Join verbs with newline or empty string if undefined
         });
         data.push(row);
       });
@@ -305,18 +334,7 @@ export default function Session() {
             </div>
 
             <div className="flex-col w-full md:w-3/4">
-              <VaiFormATable
-                selectedWord={selectedWord}
-                selectedPerson={selectedPerson}
-                selectedTense={selectedTense.tense}
-                selectedPerson2={selectedPerson2.person2}
-                setSelectedPerson={setSelectedPerson}
-                setSelectedTense={(tense, type) =>
-                  setSelectedTense({ tense, type })
-                }
-                setSelectedPerson2={handlePerson2Change}
-                verbConjugated={verbConjugated}
-              />
+              {renderFormComponent()}
             </div>
           </div>
 
@@ -349,14 +367,25 @@ export default function Session() {
             </ScrollArea>
           </div>
 
-          <div className="overflow-x-auto w-full border border-black rounded-md shadow-3xl shadow-black">
+          <div className="overflow-x-auto w-full border-2 border-black rounded-md shadow-3xl shadow-black">
             <table className="w-full bg-white ">
               <thead>
                 <tr>
-                  <th className="border border-black px-4 py-2  "> </th>
-                  <th className="border border-black px-4 py-2 ">A Form</th>
-                  <th className="border border-black px-4 py-2">B Form</th>
-                  <th className="border-black border px-4 py-2">C Form</th>
+                  <th className="border border-black border-t-0 px-4 py-2  ">
+                    {" "}
+                  </th>
+                  <th className="border border-black  border-t-0 px-4 py-2 ">
+                    A Form
+                  </th>
+                  <th className="border border-black  border-t-0 px-4 py-2">
+                    B Form
+                  </th>
+                  <th className="border-black border   border-t-0 px-4 py-2">
+                    C Form
+                  </th>
+                  <th className="border-black border   border-t-0 px-4 py-2">
+                    C Form Selection
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -374,6 +403,12 @@ export default function Session() {
                         )}
                       </td>
                     ))}
+                    <td className="border border-black">
+                      <Combobox
+                      /* options={["Option1", "Option2", "Option3"]} // Provide appropriate options
+                onSelect={(value) => handleComboBoxChange(tense, "C", value)} // Handle change appropriately */
+                      />
+                    </td>
                   </tr>
                 ))}
               </tbody>

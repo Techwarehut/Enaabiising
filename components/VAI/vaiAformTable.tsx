@@ -4,6 +4,10 @@ import { TableProps } from "../TableTypes";
 import shouldEnableButton from "@/lib/utils";
 import PersonButton from "../TableComponents/PersonButton";
 import TenseButtonGroup from "../TableComponents/TenseButtonGroup";
+import DropShortVowel from "../TableComponents/DropShortVowelButton";
+import EmptyButtonPerson2 from "../TableComponents/EmptyButtonPerson2";
+import EmptyButtonPerson from "../TableComponents/EmptyButtonPerson";
+import Person2RuleButton from "../TableComponents/Person2RuleButton";
 
 const VaiFormATable: React.FC<TableProps> = ({
   selectedWord,
@@ -98,46 +102,24 @@ const VaiFormATable: React.FC<TableProps> = ({
             <td className="border border-black" rowSpan={9}>
               {selectedWord}
             </td>
-            <td className="border border-black">
+            <td className="border border-black" rowSpan={2}>
               {/* Button for '_' */}
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedPerson2("_", "replace", "V");
-                  handleRowClick(0); // Disable other rows
-                }}
-                className="mb-2"
-                disabled={
-                  !shouldEnableButton(
-                    "",
-                    selectedWord,
-                    "(Drop short vowels: a, i, o)",
-                    false
-                  ) ||
-                  (activeRow != -1 && activeRow != 0)
-                }
-              >
-                _
-              </Button>{" "}
-              (Drop short vowels: a, i, o)
-              <br />
+              <DropShortVowel
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                rowIndex={0}
+                selectedWord={selectedWord}
+                setSelectedPerson2={setSelectedPerson2}
+              />
+
               {/* Empty Button */}
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedPerson2(" ", "append");
-                  handleRowClick(0); // Disable other rows
-                }}
-                disabled={
-                  shouldEnableButton(
-                    "",
-                    selectedWord,
-                    "(Drop short vowels: a, i, o)",
-                    false
-                  ) ||
-                  (activeRow != -1 && activeRow != 0)
-                }
-              ></Button>
+              <EmptyButtonPerson2
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                rowIndex={0}
+                selectedWord={selectedWord}
+                setSelectedPerson2={setSelectedPerson2}
+              />
             </td>
           </tr>
 
@@ -156,191 +138,104 @@ const VaiFormATable: React.FC<TableProps> = ({
                 gi
               </Button>
             </td>
-
-            <td className="border border-black">
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedPerson2("_", "replace", "V");
-                  handleRowClick(0); // Disable other rows
-                }}
-                className="mb-2"
-                disabled={
-                  !shouldEnableButton(
-                    "",
-                    selectedWord,
-                    "(Drop short vowels: a, i, o)",
-                    false
-                  ) ||
-                  (activeRow != -1 && activeRow != 0)
-                }
-              >
-                _
-              </Button>{" "}
-              (Drop short vowels: a, i, o)
-            </td>
           </tr>
 
           {/* ----------------Row for "S/he, it"----------------------*/}
           <tr>
             <td className="border border-black">S/he, it</td>
-            <td className="border border-black">
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedPerson(" ");
-                  handleRowClick(1); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 1}
-              ></Button>
+            <td className="border border-black" rowSpan={3}>
+              <EmptyButtonPerson
+                rowIndex={1}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson={setSelectedPerson}
+              />
             </td>
 
             <td className="border border-black" rowSpan={3}>
-              <Button
-                variant="outline"
-                className="mb-1"
-                onClick={() => {
-                  setSelectedTense("gii-", "Past");
-                  handleRowClick(1); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 1}
-              >
-                gii
-              </Button>
-              <br />
-              <Button
-                variant="outline"
-                className="mb-1"
-                onClick={() => {
-                  setSelectedTense(" ", "Present");
-                  handleRowClick(1); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 1}
-              ></Button>
-              <br />
-              <Button
-                variant="outline"
-                className="mb-1"
-                onClick={() => {
-                  setSelectedTense("wii-", "Future");
-                  handleRowClick(1); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 1}
-              >
-                wii
-              </Button>
-              <br />
-              <Button
-                variant="outline"
-                className="mb-1"
-                onClick={() => {
-                  setSelectedTense("da-", "Future2");
-                  handleRowClick(1); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 1}
-              >
-                da
-              </Button>
+              <TenseButtonGroup
+                labels={["gii", " ", "wii", "da"]}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                rowIndex={1}
+                selectedWord={selectedWord}
+                setSelectedTense={setSelectedTense}
+              />
             </td>
-            <td>
-              <Button
-                variant="outline"
-                className="mb-1"
-                onClick={() => {
-                  setSelectedPerson2(" ", "append");
-                  handleRowClick(1); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 1}
-              ></Button>
+            <td className="flex flex-row border-b border-black">
+              <EmptyButtonPerson2
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                rowIndex={1}
+                selectedWord={selectedWord}
+                setSelectedPerson2={setSelectedPerson2}
+              />
             </td>
           </tr>
 
           {/*------------ Row for "His/Her"------------------- */}
           <tr>
             <td className="border border-black">His/Her</td>
-            <td className="border border-black">
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedPerson(" ");
-                  handleRowClick(1); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 1}
-              ></Button>
-            </td>
-            <td className="border border-black">
-              (V) -{" "}
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedPerson2("-wan", "append");
-                  handleRowClick(1); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 1}
-              >
-                wan
-              </Button>
-              , (N/M) -{" "}
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedPerson2("-oon", "append");
-                  handleRowClick(1); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 1}
-              >
-                oon
-              </Button>
+
+            <td className="flex flex-row border-b border-black">
+              <Person2RuleButton
+                label="wan"
+                suffix="(V) - "
+                rowIndex={1}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(V)"
+              />
+              <Person2RuleButton
+                label="oon"
+                suffix="(N/M) - "
+                rowIndex={1}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(n,m)"
+              />
             </td>
           </tr>
 
           {/*---------------- Row for "Unspecified / X"------------------- */}
           <tr>
             <td className="border border-black">Unspecified / X</td>
-            <td className="border border-black">
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedPerson(" ");
-                  handleRowClick(1); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 1}
-              ></Button>
-            </td>
-            <td className="border border-black">
-              (V) -{" "}
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedPerson2("-oon", "append");
-                  handleRowClick(1); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 1}
-              >
-                m
-              </Button>
-              , (N) -{" "}
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedPerson2("-im", "append");
-                  handleRowClick(1); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 1}
-              >
-                im
-              </Button>
-              , (M) -{" "}
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedPerson2("-am", "append");
-                  handleRowClick(1); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 1}
-              >
-                am
-              </Button>
+
+            <td className="flex flex-row ">
+              <Person2RuleButton
+                label="m"
+                suffix="(V) - "
+                rowIndex={1}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(V)"
+              />
+              <Person2RuleButton
+                label="im"
+                suffix="(N) - "
+                rowIndex={1}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(n)"
+              />
+              <Person2RuleButton
+                label="am"
+                suffix="(M) - "
+                rowIndex={1}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(m)"
+              />
             </td>
           </tr>
 
@@ -348,119 +243,69 @@ const VaiFormATable: React.FC<TableProps> = ({
           <tr>
             <td className="border border-black">We (exclusive)</td>
             <td className="border border-black">
-              <Button
-                variant="outline"
+              {/* Button for 'ni-' */}
+              <PersonButton
+                label="ni"
                 onClick={() => {
                   setSelectedPerson("ni-");
                   handleRowClick(2); // Disable other rows
                 }}
-                disabled={activeRow != -1 && activeRow != 2}
-                className="mb-1"
-              >
-                ni
-              </Button>
-              <br />
-              <Button
-                variant="outline"
+                disabled={activeRow !== -1 && activeRow !== 2}
+              />
+              <PersonButton
+                label="in"
                 onClick={() => {
                   setSelectedPerson("in-");
-                  handleRowClick(2); // Disable other rows
+                  handleRowClick(2);
                 }}
                 disabled={
                   !shouldEnableButton(selectedTense, "", "(b,d,g)", true) ||
-                  (activeRow != -1 && activeRow != 2)
+                  (activeRow !== -1 && activeRow !== 2)
                 }
-              >
-                in
-              </Button>{" "}
-              - (b,d,g)
+                suffix=" -(b,d,g)"
+              />
             </td>
             <td className="border border-black" rowSpan={3}>
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedTense("gii-", "Past");
-                  handleRowClick(2); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 2}
-                className="mb-1"
-              >
-                gii
-              </Button>
-              <br />
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedTense("d-", "Present");
-                  handleRowClick(2); // Disable other rows
-                }}
-                disabled={
-                  !shouldEnableButton(selectedWord, "", "(V)", true) ||
-                  (activeRow != -1 && activeRow != 2)
-                }
-                className="mb-1"
-              >
-                d
-              </Button>{" "}
-              -(V)
-              <br />
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedTense("wii-", "Future");
-                  handleRowClick(2); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 2}
-                className="mb-1"
-              >
-                wii
-              </Button>
-              <br />
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedTense("ga-", "Future2");
-                  handleRowClick(2); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 2}
-              >
-                ga
-              </Button>
+              <TenseButtonGroup
+                labels={["gii", "d-(V)", "wii", "ga"]}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                rowIndex={2}
+                selectedWord={selectedWord}
+                setSelectedTense={setSelectedTense}
+              />
             </td>
-            <td className="border border-black">
-              (V) -{" "}
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedPerson2("-min", "append");
-                  handleRowClick(2); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 2}
-              >
-                min
-              </Button>
-              , (N) -{" "}
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedPerson2("-imin", "append");
-                  handleRowClick(2); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 2}
-              >
-                imin
-              </Button>
-              , (M)-{" "}
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedPerson2("-amin", "append");
-                  handleRowClick(2); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 2}
-              >
-                amin
-              </Button>
+            <td rowSpan={3} className="flex flex-row  border-t border-black">
+              <Person2RuleButton
+                label="min"
+                suffix="(V) - "
+                rowIndex={2}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(V)"
+              />
+              <Person2RuleButton
+                label="imin"
+                suffix="(N) - "
+                rowIndex={2}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(n)"
+              />
+              <Person2RuleButton
+                label="amin"
+                suffix="(M) - "
+                rowIndex={2}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(m)"
+              />
             </td>
           </tr>
 
@@ -468,52 +313,14 @@ const VaiFormATable: React.FC<TableProps> = ({
           <tr>
             <td className="border border-black">We (inclusive)</td>
             <td className="border border-black">
-              <Button
-                variant="outline"
+              <PersonButton
+                label="gi"
                 onClick={() => {
                   setSelectedPerson("gi-");
                   handleRowClick(2); // Disable other rows
                 }}
-                disabled={activeRow != -1 && activeRow != 2}
-              >
-                gi
-              </Button>
-            </td>
-            <td className="border border-black">
-              {" "}
-              (V) -{" "}
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedPerson2("-min", "append");
-                  handleRowClick(2); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 2}
-              >
-                min
-              </Button>
-              , (N) -{" "}
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedPerson2("-imin", "append");
-                  handleRowClick(2); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 2}
-              >
-                imin
-              </Button>
-              , (M)-{" "}
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedPerson2("-amin", "append");
-                  handleRowClick(2); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 2}
-              >
-                amin
-              </Button>
+                disabled={activeRow !== -1 && activeRow !== 2}
+              />
             </td>
           </tr>
 
@@ -521,51 +328,46 @@ const VaiFormATable: React.FC<TableProps> = ({
           <tr>
             <td className="border border-black">Y’all</td>
             <td className="border border-black">
-              <Button
-                variant="outline"
+              <PersonButton
+                label="gi"
                 onClick={() => {
                   setSelectedPerson("gi-");
                   handleRowClick(2); // Disable other rows
                 }}
-                disabled={activeRow != -1 && activeRow != 2}
-              >
-                gi
-              </Button>
+                disabled={activeRow !== -1 && activeRow !== 2}
+              />
             </td>
-            <td className="border border-black">
-              (V) -{" "}
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedPerson2("-oon", "append");
-                  handleRowClick(2); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 2}
-              >
-                m
-              </Button>
-              , (N) -{" "}
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedPerson2("-im", "append");
-                  handleRowClick(2); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 2}
-              >
-                im
-              </Button>
-              , (M) -{" "}
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedPerson2("-am", "append");
-                  handleRowClick(2); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 2}
-              >
-                am
-              </Button>
+            <td className="flex flex-row border-t border-black">
+              <Person2RuleButton
+                label="m"
+                suffix="(V) - "
+                rowIndex={2}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(V)"
+              />
+              <Person2RuleButton
+                label="im"
+                suffix="(N) - "
+                rowIndex={2}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(n)"
+              />
+              <Person2RuleButton
+                label="am"
+                suffix="(M) - "
+                rowIndex={2}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(m)"
+              />
             </td>
           </tr>
 
@@ -573,84 +375,45 @@ const VaiFormATable: React.FC<TableProps> = ({
           <tr>
             <td className="border border-black">They</td>
             <td className="border border-black">
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedPerson(" ");
-                  handleRowClick(3); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 3}
-              ></Button>
+              <EmptyButtonPerson
+                rowIndex={3}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson={setSelectedPerson}
+              />
+            </td>
+
+            <td className="border border-black" rowSpan={3}>
+              <TenseButtonGroup
+                labels={["gii", " ", "wii", "da"]}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                rowIndex={3}
+                selectedWord={selectedWord}
+                setSelectedTense={setSelectedTense}
+              />
             </td>
             <td className="border border-black">
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedTense("gii-", "Past");
-                  handleRowClick(3); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 3}
-                className="mb-1"
-              >
-                gii
-              </Button>
-              <br />
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedTense(" ", "Present");
-                  handleRowClick(3); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 3}
-                className="mb-1"
-              ></Button>
-              <br />
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedTense("wii-", "Future");
-                  handleRowClick(3); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 3}
-                className="mb-1"
-              >
-                wii
-              </Button>
-              <br />
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedTense("da-", "Future");
-                  handleRowClick(3); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 3}
-              >
-                da
-              </Button>
-            </td>
-            <td className="border border-black">
-              (V)-{" "}
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedPerson2("-wag", "append");
-                  handleRowClick(3); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 3}
-              >
-                wag
-              </Button>
-              , (N/M)-{" "}
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedPerson2("-oog", "append");
-                  handleRowClick(3); // Disable other rows
-                }}
-                disabled={activeRow != -1 && activeRow != 3}
-              >
-                oog
-              </Button>
+              <Person2RuleButton
+                label="wag"
+                suffix="(V) - "
+                rowIndex={3}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(V)"
+              />
+              <Person2RuleButton
+                label="oog"
+                suffix="(N/M) - "
+                rowIndex={3}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(n,m)"
+              />
             </td>
           </tr>
         </tbody>
