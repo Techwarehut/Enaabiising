@@ -36,8 +36,9 @@ const Person2RuleButton: React.FC<ActionButtonProps> = ({
         variant="outline"
         onClick={handleClick}
         disabled={
-          !shouldEnableButton("", selectedWord, rule, false) ||
-          (activeRow !== -1 && activeRow !== rowIndex)
+          !selectedWord ||
+          (activeRow !== -1 && activeRow !== rowIndex) ||
+          (rule ? !shouldEnableButton("", selectedWord, rule, false) : false)
         }
       >
         {label}

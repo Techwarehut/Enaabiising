@@ -32,13 +32,14 @@ const DropShortVowel: React.FC<PersonButtonProps> = ({
         setSelectedPerson2("_", "replace", "V"); // Set tense
       }}
       disabled={
+        !selectedWord ||
+        (activeRow !== -1 && activeRow !== rowIndex) ||
         !shouldEnableButton(
           "",
           selectedWord,
           "(Drop short vowels: a, i, o)",
           false
-        ) ||
-        (activeRow !== -1 && activeRow !== rowIndex)
+        )
       }
     >
       _

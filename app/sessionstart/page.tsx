@@ -16,6 +16,8 @@ import {
 } from "@/components/ui/menubar";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import VaiFormATable from "@/components/VAI/vaiAformTable";
+import VaiFormBTable from "@/components/VAI/vaiBformTable";
+import VaiFormCTable from "@/components/VAI/vaiCform";
 
 import jsPDF from "jspdf";
 import "jspdf-autotable"; // Make sure to import the autoTable plugin
@@ -74,7 +76,11 @@ export default function Session() {
   };
 
   const renderFormComponent = () => {
-    console.log(selectedType, selectedForm);
+    const isBFormComplete =
+      conjugatedVerbs.B.Past.length > 0 &&
+      conjugatedVerbs.B.Present.length > 0 &&
+      conjugatedVerbs.B.Future.length > 0 &&
+      conjugatedVerbs.B.Future2.length > 0;
     switch (selectedType) {
       case "VAI":
         if (selectedForm === "A FORM") {
@@ -91,6 +97,34 @@ export default function Session() {
               setSelectedPerson2={handlePerson2Change}
               verbConjugated={verbConjugated}
             />
+          );
+        } else if (selectedForm === "B FORM") {
+          return (
+            <VaiFormBTable
+              selectedWord={selectedWord}
+              selectedPerson={selectedPerson}
+              selectedTense={selectedTense.tense}
+              selectedPerson2={selectedPerson2.person2}
+              setSelectedPerson={setSelectedPerson}
+              setSelectedTense={(tense, type) =>
+                setSelectedTense({ tense, type })
+              }
+              setSelectedPerson2={handlePerson2Change}
+              verbConjugated={verbConjugated}
+            />
+          );
+        } else if (selectedForm === "C FORM") {
+          return (
+            <div className="flex border border-black rounded-md shadow-3xl shadow-black md:min-h-[600px] p-12 items-center justify-center">
+              {!isBFormComplete ? (
+                <div>Please complete the B Form.</div>
+              ) : (
+                <div>
+                  Scroll down to make your C Form selection. Don't forget to
+                  EXPORT your work once complete.
+                </div>
+              )}
+            </div>
           );
         }
         // Handle B and C forms similarly
@@ -292,13 +326,18 @@ export default function Session() {
           </Menubar>
 
           <div className="flex items-start justify-start self-start">
-            <p className="mt-4">
-              Choose a verb from the Word Bank and make your selections from the
-              centre out picking out the pieces to build up our verb. Begin with
-              A Form, then repeat the process for B Form and C Form. Remember to
-              export your completed work as a PDF before switching to other verb
-              types or negatives.
-            </p>
+            <ol className="self-start list-decimal list-outside ml-5">
+              <li>Choose a verb from the Word Bank.</li>
+              <li>
+                Make your selections from the center out, left to right or right
+                to left.
+              </li>
+              <li>Begin with A Form, then repeat for B Form and C Form.</li>
+              <li>
+                Remember to export your completed work as a PDF before switching
+                to other verb types or negatives.
+              </li>
+            </ol>
           </div>
 
           <div className="flex w-full flex-col md:flex-row-reverse mt-4  gap-4">
@@ -318,8 +357,8 @@ export default function Session() {
                         <Button
                           variant="ghost"
                           onClick={() => {
-                            setSelectedWord(word);
-                            setWordInVerb(word);
+                            setSelectedWord(word.toLowerCase());
+                            setWordInVerb(word.toLowerCase());
                           }}
                         >
                           {word}

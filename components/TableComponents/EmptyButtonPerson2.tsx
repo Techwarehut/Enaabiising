@@ -31,13 +31,13 @@ const EmptyButtonPerson2: React.FC<PersonButtonProps> = ({
         handleRowClick(rowIndex); // Disable other rows
       }}
       disabled={
+        (activeRow != -1 && activeRow != rowIndex) ||
         shouldEnableButton(
           "",
           selectedWord,
           "(Drop short vowels: a, i, o)",
           false
-        ) ||
-        (activeRow != -1 && activeRow != rowIndex)
+        )
       }
     ></Button>
   </div>

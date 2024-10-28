@@ -9,12 +9,14 @@ interface PersonButtonProps {
   rowIndex: number; // The row index to be passed to handleRowClick
 
   setSelectedPerson: (person: string) => void; // Include this for tense setting
+  selectedWord: string;
 }
 
 const EmptyButtonPerson: React.FC<PersonButtonProps> = ({
   activeRow,
   handleRowClick,
   rowIndex,
+  selectedWord,
 
   setSelectedPerson,
 }) => (
@@ -26,7 +28,7 @@ const EmptyButtonPerson: React.FC<PersonButtonProps> = ({
         setSelectedPerson(" ");
         handleRowClick(rowIndex); // Disable other rows
       }}
-      disabled={activeRow != -1 && activeRow != rowIndex}
+      disabled={!selectedWord || (activeRow != -1 && activeRow != rowIndex)}
     ></Button>
   </div>
 );

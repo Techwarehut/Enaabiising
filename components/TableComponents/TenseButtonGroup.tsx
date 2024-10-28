@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "../ui/button";
+import shouldEnableButton from "@/lib/utils";
 
 interface ButtonGroupProps {
   labels: string[];
@@ -9,6 +10,7 @@ interface ButtonGroupProps {
   rowIndex: number; // The row index to be passed to handleRowClick
   selectedWord: string; // Add selectedWord prop
   setSelectedTense: (tense: string, time: string) => void; // Include this for tense setting
+  selectedPerson: string;
 }
 
 const TenseButtonGroup: React.FC<ButtonGroupProps> = ({
@@ -19,6 +21,7 @@ const TenseButtonGroup: React.FC<ButtonGroupProps> = ({
   rowIndex,
   selectedWord,
   setSelectedTense,
+  selectedPerson,
 }) => {
   const tenses = ["Past", "Present", "Future", "Future2"];
   return (
@@ -46,7 +49,12 @@ const TenseButtonGroup: React.FC<ButtonGroupProps> = ({
 
                 setSelectedTense(tenseSuffix, time); // Set tense
               }}
-              disabled={activeRow !== -1 && activeRow !== rowIndex}
+              disabled={
+                !selectedWord ||
+                (activeRow !== -1 && activeRow !== rowIndex) ||
+                (selectedPerson === "in-" &&
+                  !shouldEnableButton(baseLabel, "", "(b,d,g)", true)) // Call only if rule is not empty
+              }
             >
               {baseLabel}
             </Button>
