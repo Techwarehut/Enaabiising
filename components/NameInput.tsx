@@ -27,9 +27,9 @@ const NameInput: React.FC<NameInputProps> = ({ showInstructions = true }) => {
       {showInstructions && (
         <p className="text-center text-gray-600 mt-4">
           or{" "}
-          <a href="/instructions" className="text-blue-800 underline">
+          <Link href="/instructions" className="text-blue-800 underline">
             View Instructions
-          </a>
+          </Link>
         </p>
       )}
     </div>

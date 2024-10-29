@@ -21,7 +21,6 @@ const shouldEnableButton = (
   };
 
   const letters = parseLetters(rule);
-  console.log("Letters", letters);
 
   switch (rule) {
     case "(V)":

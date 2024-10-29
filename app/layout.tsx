@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Head from "next/head";
+import { AuthProvider } from "@/context/authContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -33,21 +34,11 @@ export default function RootLayout({
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
         <title>Enaabiising</title>
-        {/* <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300;400;500;600;700;800;900&display=swap"
-          rel="stylesheet"
-        /> */}
       </Head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen flex flex-col items-center`}
       >
-        {children}
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );

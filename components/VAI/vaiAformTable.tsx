@@ -34,7 +34,6 @@ const VaiFormATable: React.FC<TableProps> = ({
   }, [selectedWord]);
 
   useEffect(() => {
-    console.log("Iam here", verbConjugated);
     if (verbConjugated) {
       resetRows(); // Call resetRows when verbConjugated changes and is true
     }

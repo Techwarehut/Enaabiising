@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+
 import Image from "next/image";
 import {
   AlertDialog,
@@ -14,18 +14,15 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "./ui/button";
+import { useAuth } from "@/context/authContext";
+import { useRouter } from "next/navigation";
+import LogoutButton from "./LogoutButton";
 
 interface Header2Props {
   onExport: () => void; // Function to export the table
 }
 
 const Header2: React.FC<Header2Props> = ({ onExport }) => {
-  const handleLogout = () => {
-    // Perform any logout logic here (e.g., clearing tokens, user data)
-    // Example: localStorage.removeItem("userToken");
-    //router.replace("/"); // Redirect to home page after logout
-  };
-
   return (
     <header className="flex items-center justify-between p-4 gap-12">
       <div className="flex relative h-20 w-60">
@@ -55,18 +52,17 @@ const Header2: React.FC<Header2Props> = ({ onExport }) => {
             <AlertDialogHeader>
               <AlertDialogTitle>Do you wanna exit?</AlertDialogTitle>
               <AlertDialogDescription>
-                Remember, all your current data will be deleted automatically
-                and cannot be restored. You will have to start from the
-                beginning next time.
+                Remember, all your current data will be deleted and cannot be
+                restored. You will have to start from the beginning next time.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
               <AlertDialogAction
                 asChild
-                onClick={handleLogout} // Directly call handleLogout
+                // Directly call handleLogout
               >
-                <button className="font-bold">Continue</button>
+                <LogoutButton />
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
