@@ -27,10 +27,20 @@ export default function Login() {
   };
 
   return (
-    <main className="flex flex-col h-full items-center justify-center w-full max-w-6xl">
-      <section className="flex flex-col h-full items-center justify-center w-full max-w-6xl p-4 md:p-12 mt-24 md:mt-12">
-        <div className="flex flex-col items-center justify-center bg-white p-12 w-full max-w-8xl rounded shadow-md gap-4 border-2 border-black">
-          <div className="flex relative h-28 md:h-36 w-72 md:w-96">
+    <main className="flex flex-col h-full md:h-auto items-center justify-center w-full max-w-6xl">
+      <section className="flex flex-col h-full items-center justify-center w-full max-w-6xl p-4  ">
+        <div className="flex flex-col items-center justify-center bg-white p-4 m-8 w-full max-w-8xl rounded shadow-md border-2 border-black">
+          <div className="flex flex-row relative justify-end self-end h-20 md:h-36 w-20 md:w-36 md:-m-4">
+            <Image
+              src="/assets/images/Bulb.png"
+              alt="Logo"
+              priority
+              fill
+              sizes="(max-width: 640px) 50vw, (max-width: 768px) 30vw, 200px"
+              style={{ objectFit: "contain" }}
+            />
+          </div>
+          <div className="flex relative h-24 md:h-32 w-72 md:w-96 ">
             <Image
               src="/assets/images/logo.png"
               alt="Logo"
@@ -76,6 +86,16 @@ export default function Login() {
 
               {error && <p className="text-destructive">{error}</p>}
             </form>
+          </div>
+          <div className="flex flex-row relative justify-end self-start h-20 md:h-48 w-20 md:w-48 mt-8 md:-m-4">
+            <Image
+              src="/assets/images/Book.png"
+              alt="Logo"
+              priority
+              fill
+              sizes="(max-width: 640px) 50vw, (max-width: 768px) 30vw, 200px"
+              style={{ objectFit: "contain" }}
+            />
           </div>
         </div>
       </section>

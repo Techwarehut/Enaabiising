@@ -62,7 +62,7 @@ const Header2: React.FC<Header2Props> = ({ onExport }) => {
                 asChild
                 // Directly call handleLogout
               >
-                <LogoutButton />
+                <LogoutButton variant="destructive" className="w-full" />
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>

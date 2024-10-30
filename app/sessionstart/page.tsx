@@ -27,6 +27,8 @@ import { useEffect, useState } from "react";
 
 type Form = "A" | "B" | "C";
 type Tense = "Past" | "Present" | "Future" | "Future2";
+// Define the specific verb types
+type VerbType = "VAI" | "VII" | "VTA" | "VTI";
 
 type ConjugatedVerbs = {
   [key in Form]: {
@@ -43,7 +45,7 @@ declare module "jspdf" {
 
 export default function Session() {
   const [userName, setUserName] = useState("");
-  const [selectedType, setSelectedType] = useState<string>("VAI");
+  const [selectedType, setSelectedType] = useState<VerbType>("VAI");
   const [selectedForm, setSelectedForm] = useState<string>("A FORM");
   const [selectedWord, setSelectedWord] = useState<string>("");
   const [wordInVerb, setWordInVerb] = useState<string>(selectedWord);
@@ -189,6 +191,42 @@ export default function Session() {
     }
   }, [verbConjugated]);
 
+  const handleCForm = (tenseKey: Tense, value: string) => {
+    console.log(tenseKey, value);
+
+    if (!value) return;
+
+    // Split the value using "->" to get the parts
+    const [oldValue, newValue] = value.split("->");
+
+    setConjugatedVerbs((prev) => {
+      // Create a new object for C, copying B's values
+      const newCForm = {
+        ...prev,
+        C: {
+          ...prev.C,
+          [tenseKey]: [...prev.B[tenseKey]], // Copy the selected tense from B to C
+        },
+      };
+
+      // Replace the first occurrence of the specified oldValue in the selected tense
+      const updatedCArray = newCForm.C[tenseKey].map(
+        (item) => item.replace(oldValue, newValue) // Replace oldValue with newValue
+      );
+
+      // Update the C form with the modified array
+      return {
+        ...newCForm,
+        C: {
+          ...newCForm.C,
+          [tenseKey]: updatedCArray, // Replace with the updated array
+        },
+      };
+    });
+
+    //use value to replace first occurrence of string in value example gii->gaa
+  };
+
   const resetStates = () => {
     setSelectedTense({ tense: "", type: "" });
     setSelectedPerson("");
@@ -197,7 +235,7 @@ export default function Session() {
     setWordInVerb("");
   };
 
-  const handleMenuSelection = (type: string, form: string) => {
+  const handleMenuSelection = (type: VerbType, form: string) => {
     // Check if the type has changed
     const isTypeChange = type !== selectedType;
 
@@ -339,43 +377,45 @@ export default function Session() {
         <section className="flex-1 flex-col items-center w-full max-w-8xl justify-center p-2 md:p-8 ">
           <div className="flex flex-col items-center justify-center bg-white p-2 md:p-12 w-full max-w-8xl rounded  gap-8 border-2 border-black">
             <Menubar className="flex-1 w-full items-center justify-between border-2 border-black shadow-3xl rounded-lg shadow-black">
-              {["VAI", "VII", "VTA", "VTI"].map((type, index) => (
-                <div
-                  key={type}
-                  className={`flex w-full p-2  hover:bg-[#D4FCFC] ${
-                    index === 0
-                      ? "bg-[#F1CBFF] rounded-l-md border-r border-black"
-                      : index === 1
-                      ? "bg-[#FFE4C7] border-r border-black"
-                      : index === 2
-                      ? "bg-[#C0BFF9] border-r border-black"
-                      : "bg-[#FBFDB6] rounded-r-lg"
-                  }`}
-                >
-                  <MenubarMenu>
-                    <MenubarTrigger className="flex-1 w-full text-lg">
-                      {type}
-                    </MenubarTrigger>
-                    <MenubarContent>
-                      {[
-                        "A FORM",
-                        "B FORM",
-                        "C FORM",
-                        "A FORM-NEGATIVE",
-                        "B FORM-NEGATIVE",
-                        "C FORM-NEGATIVE",
-                      ].map((form) => (
-                        <MenubarItem
-                          key={form}
-                          onClick={() => handleMenuSelection(type, form)}
-                        >
-                          {form}
-                        </MenubarItem>
-                      ))}
-                    </MenubarContent>
-                  </MenubarMenu>
-                </div>
-              ))}
+              {(["VAI", "VII", "VTA", "VTI"] as VerbType[]).map(
+                (type, index) => (
+                  <div
+                    key={type}
+                    className={`flex w-full p-2  hover:bg-[#D4FCFC] ${
+                      index === 0
+                        ? "bg-[#F1CBFF] rounded-l-md border-r border-black"
+                        : index === 1
+                        ? "bg-[#FFE4C7] border-r border-black"
+                        : index === 2
+                        ? "bg-[#C0BFF9] border-r border-black"
+                        : "bg-[#FBFDB6] rounded-r-lg"
+                    }`}
+                  >
+                    <MenubarMenu>
+                      <MenubarTrigger className="flex-1 w-full text-lg">
+                        {type}
+                      </MenubarTrigger>
+                      <MenubarContent>
+                        {[
+                          "A FORM",
+                          "B FORM",
+                          "C FORM",
+                          "A FORM-NEGATIVE",
+                          "B FORM-NEGATIVE",
+                          "C FORM-NEGATIVE",
+                        ].map((form) => (
+                          <MenubarItem
+                            key={form}
+                            onClick={() => handleMenuSelection(type, form)}
+                          >
+                            {form}
+                          </MenubarItem>
+                        ))}
+                      </MenubarContent>
+                    </MenubarMenu>
+                  </div>
+                )
+              )}
             </Menubar>
 
             <div className="flex items-start justify-start self-start">
@@ -463,52 +503,54 @@ export default function Session() {
               <table className="w-full bg-white ">
                 <thead>
                   <tr>
-                    <th className="border border-black border-t-0 px-4 py-2  ">
+                    <th className="w-1/8 border border-black border-t-0 px-4 py-2  ">
                       {" "}
                     </th>
-                    <th className="border border-black  border-t-0 px-4 py-2 ">
+                    <th className="w-1/4 border border-black  border-t-0 px-4 py-2 ">
                       A Form
                     </th>
-                    <th className="border border-black  border-t-0 px-4 py-2">
+                    <th className="w-1/4 border border-black  border-t-0 px-4 py-2">
                       B Form
                     </th>
-                    <th className="border-black border   border-t-0 px-4 py-2">
+                    <th className="w-1/4 border-black border   border-t-0 px-4 py-2">
                       C Form
                     </th>
                     {(selectedForm === "C FORM" ||
                       selectedForm === "C FORM-NEGATIVE") && (
-                      <th className="border-black border   border-t-0 px-4 py-2">
+                      <th className="w-1/6 border-black border border-t-0 py-2">
                         C Form Selection
                       </th>
                     )}
                   </tr>
                 </thead>
                 <tbody>
-                  {["Past", "Present", "Future", "Future2"].map((tense) => (
-                    <tr key={tense}>
-                      <td className="border border-black">
-                        {tense === "Future2" ? "Future" : tense}
-                      </td>
-                      {["A", "B", "C"].map((form) => (
-                        <td className="border border-black" key={form}>
-                          {conjugatedVerbs[form as Form][tense as Tense].map(
-                            (verb, index) => (
-                              <div key={index}>{verb}</div>
-                            )
-                          )}
+                  {(["Past", "Present", "Future", "Future2"] as Tense[]).map(
+                    (tense) => (
+                      <tr key={tense}>
+                        <td className="border border-black p-2">
+                          {tense === "Future2" ? "Future" : tense}
                         </td>
-                      ))}
-                      {(selectedForm === "C FORM" ||
-                        selectedForm === "C FORM-NEGATIVE") && (
-                        <td className="border border-black">
-                          <Combobox
-                          /* options={["Option1", "Option2", "Option3"]} // Provide appropriate options
-         onSelect={(value) => handleComboBoxChange(tense, "C", value)} // Handle change appropriately */
-                          />
-                        </td>
-                      )}
-                    </tr>
-                  ))}
+                        {["A", "B", "C"].map((form) => (
+                          <td className="border border-black p-2" key={form}>
+                            {conjugatedVerbs[form as Form][tense as Tense].map(
+                              (verb, index) => (
+                                <div key={index}>{verb}</div>
+                              )
+                            )}
+                          </td>
+                        ))}
+                        {(selectedForm === "C FORM" ||
+                          selectedForm === "C FORM-NEGATIVE") && (
+                          <td className="border border-black p-2">
+                            <Combobox
+                              verbType={selectedType}
+                              onSelect={(value) => handleCForm(tense, value)}
+                            />
+                          </td>
+                        )}
+                      </tr>
+                    )
+                  )}
                 </tbody>
               </table>
             </div>
