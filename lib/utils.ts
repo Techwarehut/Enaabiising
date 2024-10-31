@@ -38,8 +38,8 @@ const shouldEnableButton = (
 
     default:
       const startsWithLetter = checkStart
-        ? letters.includes(rightWord[0])
-        : letters.includes(leftWord[leftWord.length - 1]);
+        ? letters.some((letter) => rightWord.startsWith(letter))
+        : letters.some((letter) => leftWord.endsWith(letter));
       return startsWithLetter;
   }
 };

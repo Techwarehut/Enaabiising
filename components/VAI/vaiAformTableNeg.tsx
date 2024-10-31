@@ -8,8 +8,9 @@ import DropShortVowel from "../TableComponents/DropShortVowelButton";
 import EmptyButtonPerson2 from "../TableComponents/EmptyButtonPerson2";
 import EmptyButtonPerson from "../TableComponents/EmptyButtonPerson";
 import Person2RuleButton from "../TableComponents/Person2RuleButton";
+import Person2RuleButtonRep from "../TableComponents/Person2RuleReplaceButton";
 
-const VaiFormATable: React.FC<TableProps> = ({
+const VaiFormATableNeg: React.FC<TableProps> = ({
   selectedWord,
   selectedPerson,
   selectedTense,
@@ -55,7 +56,7 @@ const VaiFormATable: React.FC<TableProps> = ({
           style={{ textAlign: "center", margin: "10px 0" }}
           className="font-bold"
         >
-          VAI - A Form - Independent - I am
+          VAI - A Form - Independent - I am not
         </caption>
         <thead className="border border-black">
           <tr>
@@ -110,22 +111,35 @@ const VaiFormATable: React.FC<TableProps> = ({
               {selectedWord}
             </td>
             <td className="border border-black" rowSpan={2}>
-              {/* Button for '_' */}
-              <DropShortVowel
+              <Person2RuleButton
+                label="siin"
+                suffix="(V) - "
+                rowIndex={0}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
-                rowIndex={0}
-                selectedWord={selectedWord}
                 setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(V)"
               />
-
-              {/* Empty Button */}
-              <EmptyButtonPerson2
+              <Person2RuleButton
+                label="ziin"
+                suffix="(N) - "
+                rowIndex={0}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
-                rowIndex={0}
-                selectedWord={selectedWord}
                 setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(n)"
+              />
+              <Person2RuleButtonRep
+                label="nziin"
+                suffix="(M) - >"
+                rowIndex={0}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(m)"
               />
             </td>
           </tr>
@@ -172,23 +186,8 @@ const VaiFormATable: React.FC<TableProps> = ({
               />
             </td>
             <td className="flex flex-row border-b border-black">
-              <EmptyButtonPerson2
-                activeRow={activeRow}
-                handleRowClick={handleRowClick}
-                rowIndex={1}
-                selectedWord={selectedWord}
-                setSelectedPerson2={setSelectedPerson2}
-              />
-            </td>
-          </tr>
-
-          {/*------------ Row for "His/Her"------------------- */}
-          <tr>
-            <td className="border border-black">His/Her</td>
-
-            <td className="flex flex-row border-b border-black">
               <Person2RuleButton
-                label="wan"
+                label="siin"
                 suffix="(V) - "
                 rowIndex={1}
                 activeRow={activeRow}
@@ -198,14 +197,62 @@ const VaiFormATable: React.FC<TableProps> = ({
                 rule="(V)"
               />
               <Person2RuleButton
-                label="oon"
-                suffix="(N/M) - "
+                label="ziin"
+                suffix="(N) - "
                 rowIndex={1}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
-                rule="(n,m)"
+                rule="(n)"
+              />
+              <Person2RuleButtonRep
+                label="nziin"
+                suffix="(M) - >"
+                rowIndex={1}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(m)"
+              />
+            </td>
+          </tr>
+
+          {/*------------ Row for "His/Her"------------------- */}
+          <tr>
+            <td className="border border-black">H/</td>
+
+            <td className="flex flex-row border-b border-black">
+              <Person2RuleButton
+                label="siiwan"
+                suffix="(V) - "
+                rowIndex={1}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(V)"
+              />
+              <Person2RuleButton
+                label="ziiwan"
+                suffix="(N) - "
+                rowIndex={1}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(n)"
+              />
+              <Person2RuleButtonRep
+                label="nziiwan"
+                suffix="(M) - >"
+                rowIndex={1}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(m)"
               />
             </td>
           </tr>
@@ -216,7 +263,7 @@ const VaiFormATable: React.FC<TableProps> = ({
 
             <td className="flex flex-row ">
               <Person2RuleButton
-                label="m"
+                label="siim"
                 suffix="(V) - "
                 rowIndex={1}
                 activeRow={activeRow}
@@ -226,7 +273,7 @@ const VaiFormATable: React.FC<TableProps> = ({
                 rule="(V)"
               />
               <Person2RuleButton
-                label="im"
+                label="ziim"
                 suffix="(N) - "
                 rowIndex={1}
                 activeRow={activeRow}
@@ -235,9 +282,9 @@ const VaiFormATable: React.FC<TableProps> = ({
                 selectedWord={selectedWord}
                 rule="(n)"
               />
-              <Person2RuleButton
-                label="am"
-                suffix="(M) - "
+              <Person2RuleButtonRep
+                label="nziim"
+                suffix="(M) - >"
                 rowIndex={1}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
@@ -286,9 +333,9 @@ const VaiFormATable: React.FC<TableProps> = ({
                 selectedPerson={selectedPerson}
               />
             </td>
-            <td rowSpan={3} className="flex flex-row  border-t border-black">
+            <td rowSpan={2} className="flex flex-row  border-t border-black">
               <Person2RuleButton
-                label="min"
+                label="siimin"
                 suffix="(V) - "
                 rowIndex={2}
                 activeRow={activeRow}
@@ -298,7 +345,7 @@ const VaiFormATable: React.FC<TableProps> = ({
                 rule="(V)"
               />
               <Person2RuleButton
-                label="imin"
+                label="ziimin"
                 suffix="(N) - "
                 rowIndex={2}
                 activeRow={activeRow}
@@ -307,9 +354,9 @@ const VaiFormATable: React.FC<TableProps> = ({
                 selectedWord={selectedWord}
                 rule="(n)"
               />
-              <Person2RuleButton
-                label="amin"
-                suffix="(M) - "
+              <Person2RuleButtonRep
+                label="nziimin"
+                suffix="(M) - >"
                 rowIndex={2}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
@@ -343,7 +390,7 @@ const VaiFormATable: React.FC<TableProps> = ({
             <td className="border border-black">
               <PersonButton
                 label="gi"
-                rule="(b,d,g)"
+                rule=""
                 activeRow={activeRow}
                 rowIndex={2}
                 setSelectedPerson={setSelectedPerson}
@@ -354,7 +401,7 @@ const VaiFormATable: React.FC<TableProps> = ({
             </td>
             <td className="flex flex-row border-t border-black">
               <Person2RuleButton
-                label="m"
+                label="siim"
                 suffix="(V) - "
                 rowIndex={2}
                 activeRow={activeRow}
@@ -364,7 +411,7 @@ const VaiFormATable: React.FC<TableProps> = ({
                 rule="(V)"
               />
               <Person2RuleButton
-                label="im"
+                label="ziim"
                 suffix="(N) - "
                 rowIndex={2}
                 activeRow={activeRow}
@@ -373,9 +420,9 @@ const VaiFormATable: React.FC<TableProps> = ({
                 selectedWord={selectedWord}
                 rule="(n)"
               />
-              <Person2RuleButton
-                label="am"
-                suffix="(M) - "
+              <Person2RuleButtonRep
+                label="nziim"
+                suffix="(M) - >"
                 rowIndex={2}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
@@ -412,7 +459,7 @@ const VaiFormATable: React.FC<TableProps> = ({
             </td>
             <td className="border border-black">
               <Person2RuleButton
-                label="wag"
+                label="siiwag"
                 suffix="(V) - "
                 rowIndex={3}
                 activeRow={activeRow}
@@ -422,14 +469,24 @@ const VaiFormATable: React.FC<TableProps> = ({
                 rule="(V)"
               />
               <Person2RuleButton
-                label="oog"
-                suffix="(N/M) - "
+                label="ziiwag"
+                suffix="(N) - "
                 rowIndex={3}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
-                rule="(n,m)"
+                rule="(n)"
+              />
+              <Person2RuleButtonRep
+                label="nziiwag"
+                suffix="(M) - >"
+                rowIndex={3}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(m)"
               />
             </td>
           </tr>
@@ -439,4 +496,4 @@ const VaiFormATable: React.FC<TableProps> = ({
   );
 };
 
-export default VaiFormATable;
+export default VaiFormATableNeg;

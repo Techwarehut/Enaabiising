@@ -19,7 +19,23 @@ import {
 } from "@/components/ui/menubar";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import VaiFormATable from "@/components/VAI/vaiAformTable";
+import VaiFormATableNeg from "@/components/VAI/vaiAformTableNeg";
 import VaiFormBTable from "@/components/VAI/vaiBformTable";
+import VaiFormBTableNeg from "@/components/VAI/vaiBformTableNeg";
+import ViiFormATable from "@/components/VII/viiAformTable";
+import ViiFormATableNeg from "@/components/VII/viiAformTableNeg";
+import ViiFormBTable from "@/components/VII/viiBformTable";
+import ViiFormBTableNeg from "@/components/VII/viiBformTableNeg";
+import ViiFormCTable from "@/components/VII/viiCformTable";
+import ViiFormCTableNeg from "@/components/VII/viiCformTableNeg";
+import VtaFormATable from "@/components/VTA/vtaAformTable";
+import VtaFormATableNeg from "@/components/VTA/vtaAformTableNeg";
+import VtaFormBTable from "@/components/VTA/vtaBformTable";
+import VtaFormBTableNeg from "@/components/VTA/vtaBformTableNeg";
+import VtiFormATable from "@/components/VTI/vtiAformTable";
+import VtiFormATableNeg from "@/components/VTI/vtiAformTableNeg";
+import VtiFormBTable from "@/components/VTI/vtiBformTable";
+import VtiFormBTableNeg from "@/components/VTI/vtiBformTableNeg";
 
 import jsPDF from "jspdf";
 import "jspdf-autotable"; // Make sure to import the autoTable plugin
@@ -88,6 +104,7 @@ export default function Session() {
       conjugatedVerbs.B.Present.length > 0 &&
       conjugatedVerbs.B.Future.length > 0 &&
       conjugatedVerbs.B.Future2.length > 0;
+
     switch (selectedType) {
       case "VAI":
         if (selectedForm === "A FORM") {
@@ -122,10 +139,271 @@ export default function Session() {
           );
         } else if (selectedForm === "C FORM") {
           return <GenericCForm isBFormComplete={isBFormComplete} />;
+        } else if (selectedForm === "A FORM-NEGATIVE") {
+          return (
+            <VaiFormATableNeg
+              selectedWord={selectedWord}
+              selectedPerson={selectedPerson}
+              selectedTense={selectedTense.tense}
+              selectedPerson2={selectedPerson2.person2}
+              setSelectedPerson={setSelectedPerson}
+              setSelectedTense={(tense, type) =>
+                setSelectedTense({ tense, type })
+              }
+              setSelectedPerson2={handlePerson2Change}
+              verbConjugated={verbConjugated}
+            />
+          );
+        } else if (selectedForm === "B FORM-NEGATIVE") {
+          return (
+            <VaiFormBTableNeg
+              selectedWord={selectedWord}
+              selectedPerson={selectedPerson}
+              selectedTense={selectedTense.tense}
+              selectedPerson2={selectedPerson2.person2}
+              setSelectedPerson={setSelectedPerson}
+              setSelectedTense={(tense, type) =>
+                setSelectedTense({ tense, type })
+              }
+              setSelectedPerson2={handlePerson2Change}
+              verbConjugated={verbConjugated}
+            />
+          );
+        } else if (selectedForm === "C FORM-NEGATIVE") {
+          return <GenericCForm isBFormComplete={isBFormComplete} />;
         }
         // Handle B and C forms similarly
         break;
       // Handle VII, VTA, and VTI similarly
+      case "VII":
+        if (selectedForm === "A FORM") {
+          return (
+            <ViiFormATable
+              selectedWord={selectedWord}
+              selectedPerson={selectedPerson}
+              selectedTense={selectedTense.tense}
+              selectedPerson2={selectedPerson2.person2}
+              setSelectedPerson={setSelectedPerson}
+              setSelectedTense={(tense, type) =>
+                setSelectedTense({ tense, type })
+              }
+              setSelectedPerson2={handlePerson2Change}
+              verbConjugated={verbConjugated}
+            />
+          );
+        } else if (selectedForm === "B FORM") {
+          return (
+            <ViiFormBTable
+              selectedWord={selectedWord}
+              selectedPerson={selectedPerson}
+              selectedTense={selectedTense.tense}
+              selectedPerson2={selectedPerson2.person2}
+              setSelectedPerson={setSelectedPerson}
+              setSelectedTense={(tense, type) =>
+                setSelectedTense({ tense, type })
+              }
+              setSelectedPerson2={handlePerson2Change}
+              verbConjugated={verbConjugated}
+            />
+          );
+        } else if (selectedForm === "C FORM") {
+          return (
+            <ViiFormCTable
+              selectedWord={selectedWord}
+              selectedPerson={selectedPerson}
+              selectedTense={selectedTense.tense}
+              selectedPerson2={selectedPerson2.person2}
+              setSelectedPerson={setSelectedPerson}
+              setSelectedTense={(tense, type) =>
+                setSelectedTense({ tense, type })
+              }
+              setSelectedPerson2={handlePerson2Change}
+              verbConjugated={verbConjugated}
+            />
+          );
+        } else if (selectedForm === "A FORM-NEGATIVE") {
+          return (
+            <ViiFormATableNeg
+              selectedWord={selectedWord}
+              selectedPerson={selectedPerson}
+              selectedTense={selectedTense.tense}
+              selectedPerson2={selectedPerson2.person2}
+              setSelectedPerson={setSelectedPerson}
+              setSelectedTense={(tense, type) =>
+                setSelectedTense({ tense, type })
+              }
+              setSelectedPerson2={handlePerson2Change}
+              verbConjugated={verbConjugated}
+            />
+          );
+        } else if (selectedForm === "B FORM-NEGATIVE") {
+          return (
+            <ViiFormBTableNeg
+              selectedWord={selectedWord}
+              selectedPerson={selectedPerson}
+              selectedTense={selectedTense.tense}
+              selectedPerson2={selectedPerson2.person2}
+              setSelectedPerson={setSelectedPerson}
+              setSelectedTense={(tense, type) =>
+                setSelectedTense({ tense, type })
+              }
+              setSelectedPerson2={handlePerson2Change}
+              verbConjugated={verbConjugated}
+            />
+          );
+        } else if (selectedForm === "C FORM-NEGATIVE") {
+          return (
+            <ViiFormCTableNeg
+              selectedWord={selectedWord}
+              selectedPerson={selectedPerson}
+              selectedTense={selectedTense.tense}
+              selectedPerson2={selectedPerson2.person2}
+              setSelectedPerson={setSelectedPerson}
+              setSelectedTense={(tense, type) =>
+                setSelectedTense({ tense, type })
+              }
+              setSelectedPerson2={handlePerson2Change}
+              verbConjugated={verbConjugated}
+            />
+          );
+        }
+        break;
+      case "VTA":
+        if (selectedForm === "A FORM") {
+          return (
+            <VtaFormATable
+              selectedWord={selectedWord}
+              selectedPerson={selectedPerson}
+              selectedTense={selectedTense.tense}
+              selectedPerson2={selectedPerson2.person2}
+              setSelectedPerson={setSelectedPerson}
+              setSelectedTense={(tense, type) =>
+                setSelectedTense({ tense, type })
+              }
+              setSelectedPerson2={handlePerson2Change}
+              verbConjugated={verbConjugated}
+            />
+          );
+        } else if (selectedForm === "B FORM") {
+          return (
+            <VtaFormBTable
+              selectedWord={selectedWord}
+              selectedPerson={selectedPerson}
+              selectedTense={selectedTense.tense}
+              selectedPerson2={selectedPerson2.person2}
+              setSelectedPerson={setSelectedPerson}
+              setSelectedTense={(tense, type) =>
+                setSelectedTense({ tense, type })
+              }
+              setSelectedPerson2={handlePerson2Change}
+              verbConjugated={verbConjugated}
+            />
+          );
+        } else if (selectedForm === "C FORM") {
+          return <GenericCForm isBFormComplete={isBFormComplete} />;
+        } else if (selectedForm === "A FORM-NEGATIVE") {
+          return (
+            <VtaFormATableNeg
+              selectedWord={selectedWord}
+              selectedPerson={selectedPerson}
+              selectedTense={selectedTense.tense}
+              selectedPerson2={selectedPerson2.person2}
+              setSelectedPerson={setSelectedPerson}
+              setSelectedTense={(tense, type) =>
+                setSelectedTense({ tense, type })
+              }
+              setSelectedPerson2={handlePerson2Change}
+              verbConjugated={verbConjugated}
+            />
+          );
+        } else if (selectedForm === "B FORM-NEGATIVE") {
+          return (
+            <VtaFormBTableNeg
+              selectedWord={selectedWord}
+              selectedPerson={selectedPerson}
+              selectedTense={selectedTense.tense}
+              selectedPerson2={selectedPerson2.person2}
+              setSelectedPerson={setSelectedPerson}
+              setSelectedTense={(tense, type) =>
+                setSelectedTense({ tense, type })
+              }
+              setSelectedPerson2={handlePerson2Change}
+              verbConjugated={verbConjugated}
+            />
+          );
+        } else if (selectedForm === "C FORM-NEGATIVE") {
+          return <GenericCForm isBFormComplete={isBFormComplete} />;
+        }
+        // Handle B and C forms similarly
+        break;
+      case "VTI":
+        if (selectedForm === "A FORM") {
+          return (
+            <VtiFormATable
+              selectedWord={selectedWord}
+              selectedPerson={selectedPerson}
+              selectedTense={selectedTense.tense}
+              selectedPerson2={selectedPerson2.person2}
+              setSelectedPerson={setSelectedPerson}
+              setSelectedTense={(tense, type) =>
+                setSelectedTense({ tense, type })
+              }
+              setSelectedPerson2={handlePerson2Change}
+              verbConjugated={verbConjugated}
+            />
+          );
+        } else if (selectedForm === "B FORM") {
+          return (
+            <VtiFormBTable
+              selectedWord={selectedWord}
+              selectedPerson={selectedPerson}
+              selectedTense={selectedTense.tense}
+              selectedPerson2={selectedPerson2.person2}
+              setSelectedPerson={setSelectedPerson}
+              setSelectedTense={(tense, type) =>
+                setSelectedTense({ tense, type })
+              }
+              setSelectedPerson2={handlePerson2Change}
+              verbConjugated={verbConjugated}
+            />
+          );
+        } else if (selectedForm === "C FORM") {
+          return <GenericCForm isBFormComplete={isBFormComplete} />;
+        } else if (selectedForm === "A FORM-NEGATIVE") {
+          return (
+            <VtiFormATableNeg
+              selectedWord={selectedWord}
+              selectedPerson={selectedPerson}
+              selectedTense={selectedTense.tense}
+              selectedPerson2={selectedPerson2.person2}
+              setSelectedPerson={setSelectedPerson}
+              setSelectedTense={(tense, type) =>
+                setSelectedTense({ tense, type })
+              }
+              setSelectedPerson2={handlePerson2Change}
+              verbConjugated={verbConjugated}
+            />
+          );
+        } else if (selectedForm === "B FORM-NEGATIVE") {
+          return (
+            <VtiFormBTableNeg
+              selectedWord={selectedWord}
+              selectedPerson={selectedPerson}
+              selectedTense={selectedTense.tense}
+              selectedPerson2={selectedPerson2.person2}
+              setSelectedPerson={setSelectedPerson}
+              setSelectedTense={(tense, type) =>
+                setSelectedTense({ tense, type })
+              }
+              setSelectedPerson2={handlePerson2Change}
+              verbConjugated={verbConjugated}
+            />
+          );
+        } else if (selectedForm === "C FORM-NEGATIVE") {
+          return <GenericCForm isBFormComplete={isBFormComplete} />;
+        }
+        // Handle B and C forms similarly
+        break;
       default:
         return null;
     }
@@ -306,6 +584,8 @@ export default function Session() {
   ) => {
     // Set the new person2
     setSelectedPerson2({ action, person2, replaceString });
+
+    console.log(person2, action, replaceString);
 
     // Handle the replace logic
     if (action === "replace") {
@@ -515,12 +795,13 @@ export default function Session() {
                     <th className="w-1/4 border-black border   border-t-0 px-4 py-2">
                       C Form
                     </th>
-                    {(selectedForm === "C FORM" ||
-                      selectedForm === "C FORM-NEGATIVE") && (
-                      <th className="w-1/6 border-black border border-t-0 py-2">
-                        C Form Selection
-                      </th>
-                    )}
+                    {selectedType != "VII" &&
+                      (selectedForm === "C FORM" ||
+                        selectedForm === "C FORM-NEGATIVE") && (
+                        <th className="w-1/6 border-black border border-t-0 py-2">
+                          C Form Selection
+                        </th>
+                      )}
                   </tr>
                 </thead>
                 <tbody>
@@ -539,15 +820,16 @@ export default function Session() {
                             )}
                           </td>
                         ))}
-                        {(selectedForm === "C FORM" ||
-                          selectedForm === "C FORM-NEGATIVE") && (
-                          <td className="border border-black p-2">
-                            <Combobox
-                              verbType={selectedType}
-                              onSelect={(value) => handleCForm(tense, value)}
-                            />
-                          </td>
-                        )}
+                        {selectedType != "VII" &&
+                          (selectedForm === "C FORM" ||
+                            selectedForm === "C FORM-NEGATIVE") && (
+                            <td className="border border-black p-2">
+                              <Combobox
+                                verbType={selectedType}
+                                onSelect={(value) => handleCForm(tense, value)}
+                              />
+                            </td>
+                          )}
                       </tr>
                     )
                   )}

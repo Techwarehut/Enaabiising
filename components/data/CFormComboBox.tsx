@@ -3,18 +3,21 @@ export const verbOptions = {
   VAI: [
     { value: "gii->gaa", label: "gii -> gaa" },
     { value: "wii->waa", label: "wii -> waa" },
-    { value: "ji->ja", label: "ji -> ja" },
+    { value: "ji->ge", label: "ji -> ge" },
   ],
   VII: [
-    { value: "bii->gaa", label: "bii -> gaa" },
-    { value: "kii->gaa", label: "kii -> gaa" },
+    { value: "gii->gaa", label: "gii -> gaa" },
+    { value: "wii->waa", label: "wii -> waa" },
+    { value: "ji->ge", label: "ji -> ge" },
   ],
   VTA: [
-    { value: "taa->gaa", label: "taa -> gaa" },
-    { value: "naa->gaa", label: "naa -> gaa" },
+    { value: "gii->gaa", label: "gii -> gaa" },
+    { value: "wii->waa", label: "wii -> waa" },
+    { value: "ji->ge", label: "ji -> ge" },
   ],
   VTI: [
-    { value: "yii->gaa", label: "yii -> gaa" },
-    { value: "zai->gaa", label: "zai -> gaa" },
+    { value: "gii->gaa", label: "gii -> gaa" },
+    { value: "wii->waa", label: "wii -> waa" },
+    { value: "ji->ge", label: "ji -> ge" },
   ],
 };

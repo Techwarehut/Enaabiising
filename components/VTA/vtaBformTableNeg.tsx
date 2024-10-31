@@ -8,8 +8,9 @@ import DropShortVowel from "../TableComponents/DropShortVowelButton";
 import EmptyButtonPerson2 from "../TableComponents/EmptyButtonPerson2";
 import EmptyButtonPerson from "../TableComponents/EmptyButtonPerson";
 import Person2RuleButton from "../TableComponents/Person2RuleButton";
+import Person2RuleButtonRep from "../TableComponents/Person2RuleReplaceButton";
 
-const VaiFormBTable: React.FC<TableProps> = ({
+const VtaFormBTableNeg: React.FC<TableProps> = ({
   selectedWord,
   selectedPerson,
   selectedTense,
@@ -55,7 +56,7 @@ const VaiFormBTable: React.FC<TableProps> = ({
           style={{ textAlign: "center", margin: "10px 0" }}
           className="font-bold"
         >
-          VAI - B Form - Dependent - (____) I am
+          VTA - B Form - (__) I do not to h/
         </caption>
         <thead className="border border-black">
           <tr>
@@ -69,8 +70,8 @@ const VaiFormBTable: React.FC<TableProps> = ({
         <tbody>
           {/*------------------ Row for "I" -----------------------------*/}
           <tr>
-            <td className="border border-black">I</td>
-            <td className="border border-black" rowSpan={9}>
+            <td className="border border-black">I-you</td>
+            <td className="border border-black" rowSpan={7}>
               {/* Button for 'ni-' */}
               <EmptyButtonPerson
                 activeRow={activeRow}
@@ -80,7 +81,7 @@ const VaiFormBTable: React.FC<TableProps> = ({
                 selectedWord={selectedWord}
               />
             </td>
-            <td className="border border-black" rowSpan={9}>
+            <td className="border border-black" rowSpan={7}>
               <TenseButtonGroup
                 labels={["gii", " ", "wii", "ji"]}
                 activeRow={activeRow}
@@ -92,271 +93,196 @@ const VaiFormBTable: React.FC<TableProps> = ({
               />
             </td>
             {/* VAI Cell */}
-            <td className="border border-black" rowSpan={9}>
+            <td className="border border-black" rowSpan={7}>
               {selectedWord}
             </td>
-            <td className="border border-black">
-              <Person2RuleButton
-                label="yaanh"
-                suffix="(V) - "
+            <td className="flex flex-row ">
+              <Person2RuleButtonRep
+                label="nisinoonaanh"
+                suffix="(zh) -> "
                 rowIndex={0}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
-                rule="(V)"
+                rule="(zh)"
               />
               <Person2RuleButton
-                label="aanh"
-                suffix="(N/M) - "
+                label="isinoonaanh"
+                suffix="(m/n/’) - "
                 rowIndex={0}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
-                rule="(n,m)"
+                rule="(n,m,’)"
+              />
+              <Person2RuleButton
+                label="isinoonaanh"
+                suffix="(aw) - "
+                rowIndex={0}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(aw)"
               />
             </td>
           </tr>
 
           {/* ------------Row for "You"------------------- */}
           <tr>
-            <td className="border border-black">You</td>
-            <td className="flex flex-row border-b border-black">
-              <Person2RuleButton
-                label="yin"
-                suffix="(V) - "
+            <td className="border border-black">I - h/</td>
+
+            <td className="flex flex-row border-t border-black">
+              <Person2RuleButtonRep
+                label="naasiwag"
+                suffix="(zh) -> "
                 rowIndex={0}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
-                rule="(V)"
+                rule="(zh)"
               />
               <Person2RuleButton
-                label="an"
-                suffix="(N/M) - "
+                label="aasiwag"
+                suffix="(m/n/’/aw) - "
                 rowIndex={0}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
-                rule="(n,m)"
+                rule="(n,m,’,aw)"
               />
             </td>
           </tr>
 
           {/* ----------------Row for "S/he, it"----------------------*/}
           <tr>
-            <td className="border border-black">S/he, it</td>
+            <td className="border border-black">You - me</td>
 
-            <td className="flex flex-row border-b border-black">
+            <td className="flex flex-row border-t border-b border-black">
               <Person2RuleButton
-                label="d"
-                suffix="(V) - "
+                label="isiwan"
+                suffix="(zh/m/n/’/aw) - "
                 rowIndex={0}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
-                rule="(V)"
-              />
-              <Person2RuleButton
-                label="g"
-                suffix="(N) - "
-                rowIndex={0}
-                activeRow={activeRow}
-                handleRowClick={handleRowClick}
-                setSelectedPerson2={setSelectedPerson2}
-                selectedWord={selectedWord}
-                rule="(n)"
-              />
-              <Person2RuleButton
-                label="ng"
-                suffix="(M) - "
-                rowIndex={0}
-                activeRow={activeRow}
-                handleRowClick={handleRowClick}
-                setSelectedPerson2={setSelectedPerson2}
-                selectedWord={selectedWord}
-                rule="(m)"
+                rule="(zh,n,m,’,aw)"
               />
             </td>
           </tr>
 
           {/*------------ Row for "His/Her"------------------- */}
           <tr>
-            <td className="border border-black">His/Her</td>
+            <td className="border border-black">You - h/</td>
 
             <td className="flex flex-row border-b border-black">
-              <Person2RuleButton
-                label="nid"
-                suffix="(V) - "
+              <Person2RuleButtonRep
+                label="naasiwad"
+                suffix="(zh) -> "
                 rowIndex={0}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
-                rule="(V)"
+                rule="(zh)"
               />
               <Person2RuleButton
-                label="inid"
-                suffix="(N) - "
+                label="aasiwad"
+                suffix="(m/n/’/aw) - "
                 rowIndex={0}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
-                rule="(n)"
-              />
-              <Person2RuleButton
-                label="anid"
-                suffix="(M) - "
-                rowIndex={0}
-                activeRow={activeRow}
-                handleRowClick={handleRowClick}
-                setSelectedPerson2={setSelectedPerson2}
-                selectedWord={selectedWord}
-                rule="(m)"
+                rule="(n,m,’,aw)"
               />
             </td>
           </tr>
 
           {/*---------------- Row for "Unspecified / X"------------------- */}
           <tr>
-            <td className="border border-black">Unspecified / X</td>
+            <td className="border border-black">S/he - me</td>
 
-            <td className="flex flex-row ">
+            <td className="flex flex-row " rowSpan={2}>
               <Person2RuleButton
-                label="ng"
-                suffix="(V) - "
+                label="isig"
+                suffix="(zh/m/n/’/aw) - "
                 rowIndex={0}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
-                rule="(V)"
-              />
-              <Person2RuleButton
-                label="ing"
-                suffix="(N/M) - "
-                rowIndex={0}
-                activeRow={activeRow}
-                handleRowClick={handleRowClick}
-                setSelectedPerson2={setSelectedPerson2}
-                selectedWord={selectedWord}
-                rule="(n,m)"
+                rule="(zh,n,m,’,aw)"
               />
             </td>
           </tr>
 
           {/* ------------Row for "We (exclusive)"----------------- */}
           <tr>
-            <td className="border border-black">We (exclusive)</td>
-
-            <td className="flex flex-row  border-t border-black">
-              <Person2RuleButton
-                label="yaang"
-                suffix="(V) - "
+            <td className="border border-black">S/he - you</td>
+            <td className="flex flex-row border-t border-black">
+              <Person2RuleButtonRep
+                label="nisinok"
+                suffix="(zh) -> "
                 rowIndex={0}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
-                rule="(V)"
+                rule="(zh)"
               />
               <Person2RuleButton
-                label="aang"
-                suffix="(N/M) - "
+                label="isinok"
+                suffix="(m/n/’) - "
+                rowIndex={1}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(n,m,’)"
+              />
+              <Person2RuleButton
+                label="isinok"
+                suffix="(aw) - "
                 rowIndex={0}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
-                rule="(n,m)"
+                rule="(aw)"
               />
             </td>
           </tr>
 
           {/* ------------------Row for "We (inclusive)"------------------------ */}
           <tr>
-            <td className="border border-black">We (inclusive)</td>
-            <td className="flex flex-row  border-t border-black">
-              <Person2RuleButton
-                label="ying"
-                suffix="(V) - "
-                rowIndex={0}
-                activeRow={activeRow}
-                handleRowClick={handleRowClick}
-                setSelectedPerson2={setSelectedPerson2}
-                selectedWord={selectedWord}
-                rule="(V)"
-              />
-              <Person2RuleButton
-                label="ang"
-                suffix="(N/M) - "
-                rowIndex={0}
-                activeRow={activeRow}
-                handleRowClick={handleRowClick}
-                setSelectedPerson2={setSelectedPerson2}
-                selectedWord={selectedWord}
-                rule="(n,m)"
-              />
-            </td>
-          </tr>
+            <td className="border border-black">S/he - h/</td>
 
-          {/* Row for "Y’all" */}
-          <tr>
-            <td className="border border-black">Y’all</td>
-
-            <td className="flex flex-row  border-t border-black">
-              <Person2RuleButton
-                label="yig"
-                suffix="(V) - "
+            <td className="flex flex-row border-t border-black">
+              <Person2RuleButtonRep
+                label="naasig"
+                suffix="(zh) -> "
                 rowIndex={0}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
-                rule="(V)"
+                rule="(zh)"
               />
               <Person2RuleButton
-                label="eg"
-                suffix="(N/M) - "
-                rowIndex={0}
+                label="aasig"
+                suffix="(m/n/’/aw) - "
+                rowIndex={1}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
-                rule="(n,m)"
-              />
-            </td>
-          </tr>
-
-          {/* ----------------Row for "They"------------------- */}
-          <tr>
-            <td className="border border-black">They</td>
-
-            <td className="flex flex-row  border-t border-black">
-              <Person2RuleButton
-                label="waad"
-                suffix="(V) - "
-                rowIndex={0}
-                activeRow={activeRow}
-                handleRowClick={handleRowClick}
-                setSelectedPerson2={setSelectedPerson2}
-                selectedWord={selectedWord}
-                rule="(V)"
-              />
-              <Person2RuleButton
-                label="owaad"
-                suffix="(N/M) - "
-                rowIndex={0}
-                activeRow={activeRow}
-                handleRowClick={handleRowClick}
-                setSelectedPerson2={setSelectedPerson2}
-                selectedWord={selectedWord}
-                rule="(n,m)"
+                rule="(n,m,’,aw)"
               />
             </td>
           </tr>
@@ -366,4 +292,4 @@ const VaiFormBTable: React.FC<TableProps> = ({
   );
 };
 
-export default VaiFormBTable;
+export default VtaFormBTableNeg;
