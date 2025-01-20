@@ -25,7 +25,7 @@ const Person2RuleButton: React.FC<ActionButtonProps> = ({
   suffix,
 }) => {
   const handleClick = () => {
-    setSelectedPerson2(`-${label}`, "append");
+    setSelectedPerson2(`${label}`, "append");
     handleRowClick(rowIndex); // Disable other rows
   };
 

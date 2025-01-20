@@ -34,7 +34,10 @@ const TenseButtonGroup: React.FC<ButtonGroupProps> = ({
             ? "do"
             : "d"
           : label;
-        const tenseSuffix = `${baseLabel}-`;
+        // const tenseSuffix = `${baseLabel}-`;
+        // Only append '-' if the label is not a space
+        const tenseSuffix =
+          baseLabel.trim() === "" ? baseLabel : `${baseLabel}-`;
 
         // Determine the appropriate tense based on the tenses array
         const time = tenses[index]; // Get the corresponding tense

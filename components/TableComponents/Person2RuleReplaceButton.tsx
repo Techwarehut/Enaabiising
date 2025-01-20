@@ -30,7 +30,7 @@ const Person2RuleButtonRep: React.FC<ActionButtonProps> = ({
 }) => {
   const handleClick = () => {
     const cleanedRule = rule.replace(/[()]/g, ""); // Removes parentheses
-    setSelectedPerson2(`-${label}`, "replace", cleanedRule);
+    setSelectedPerson2(`${label}`, "replace", cleanedRule);
     handleRowClick(rowIndex); // Disable other rows
   };
 

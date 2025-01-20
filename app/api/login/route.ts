@@ -12,8 +12,6 @@ export async function POST(req: Request) {
   const { username, password }: { username: string; password: string } =
     await req.json();
 
-  console.log("username", username);
-
   // Find the user by username
   const user = users.find((user) => user.username === username);
 

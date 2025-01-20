@@ -71,13 +71,13 @@ const ViiFormBTable: React.FC<TableProps> = ({
           <tr>
             <td className="border border-black">It</td>
             <td className="border border-black" rowSpan={4}>
-              <EmptyButtonPerson
+              {/*  <EmptyButtonPerson
                 rowIndex={0}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson={setSelectedPerson}
                 selectedWord={selectedWord}
-              />
+              /> */}
             </td>
             <td className="border border-black" rowSpan={4}>
               <TenseButtonGroup

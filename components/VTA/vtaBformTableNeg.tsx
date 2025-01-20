@@ -73,13 +73,13 @@ const VtaFormBTableNeg: React.FC<TableProps> = ({
             <td className="border border-black">I-you</td>
             <td className="border border-black" rowSpan={7}>
               {/* Button for 'ni-' */}
-              <EmptyButtonPerson
+              {/*  <EmptyButtonPerson
                 activeRow={activeRow}
                 rowIndex={0}
                 setSelectedPerson={setSelectedPerson}
                 handleRowClick={handleRowClick}
                 selectedWord={selectedWord}
-              />
+              /> */}
             </td>
             <td className="border border-black" rowSpan={7}>
               <TenseButtonGroup

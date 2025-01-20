@@ -412,7 +412,8 @@ export default function Session() {
   useEffect(() => {
     if (
       selectedWord &&
-      selectedPerson &&
+      (selectedForm === "B FORM" ||
+        (selectedPerson && selectedForm != "B FORM")) &&
       selectedTense.tense &&
       selectedPerson2.person2
     ) {
@@ -470,8 +471,6 @@ export default function Session() {
   }, [verbConjugated]);
 
   const handleCForm = (tenseKey: Tense, value: string) => {
-    console.log(tenseKey, value);
-
     if (!value) return;
 
     // Split the value using "->" to get the parts

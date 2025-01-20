@@ -73,13 +73,13 @@ const VtiFormBTable: React.FC<TableProps> = ({
             <td className="border border-black">I - it</td>
             <td className="border border-black" rowSpan={9}>
               {/* Button for 'ni-' */}
-              <EmptyButtonPerson
+              {/*  <EmptyButtonPerson
                 activeRow={activeRow}
                 rowIndex={0}
                 setSelectedPerson={setSelectedPerson}
                 handleRowClick={handleRowClick}
                 selectedWord={selectedWord}
-              />
+              /> */}
             </td>
             <td className="border border-black" rowSpan={9}>
               <TenseButtonGroup

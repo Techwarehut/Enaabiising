@@ -30,7 +30,7 @@ const PersonButton: React.FC<PersonButtonProps> = ({
       variant="outline"
       className="mb-2"
       onClick={() => {
-        setSelectedPerson(`${label}-`);
+        setSelectedPerson(`${label}`);
         handleRowClick(rowIndex);
       }}
       disabled={
