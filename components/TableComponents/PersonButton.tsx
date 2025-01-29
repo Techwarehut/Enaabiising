@@ -12,6 +12,7 @@ interface PersonButtonProps {
   selectedTense: string;
   selectedWord: string;
   suffix?: string; // Optional suffix prop
+  oppositeRule?: string;
 }
 
 const PersonButton: React.FC<PersonButtonProps> = ({
@@ -24,25 +25,32 @@ const PersonButton: React.FC<PersonButtonProps> = ({
   selectedTense,
   selectedWord,
   suffix,
-}) => (
-  <div>
-    <Button
-      variant="outline"
-      className="mb-2"
-      onClick={() => {
-        setSelectedPerson(`${label}`);
-        handleRowClick(rowIndex);
-      }}
-      disabled={
-        !selectedWord ||
-        (activeRow !== -1 && activeRow !== rowIndex) || // Ensure boolean
-        (rule ? !shouldEnableButton(selectedTense, "", rule, true) : false) // Call only if rule is not empty
-      }
-    >
-      {label}
-    </Button>
-    {suffix && <span>{suffix}</span>}
-  </div>
-);
+  oppositeRule,
+}) => {
+  const word = selectedTense === " " ? selectedWord : selectedTense;
+  return (
+    <div>
+      <Button
+        variant="outline"
+        className="mb-2"
+        onClick={() => {
+          setSelectedPerson(`${label}`);
+          handleRowClick(rowIndex);
+        }}
+        disabled={
+          !selectedWord ||
+          (activeRow !== -1 && activeRow !== rowIndex) || // Ensure boolean
+          (rule ? !shouldEnableButton(word, "", rule, true) : false) || // Call only if rule is not empty
+          (oppositeRule && selectedTense
+            ? shouldEnableButton(word, "", oppositeRule, true)
+            : false)
+        }
+      >
+        {label}
+      </Button>
+      {suffix && <span>{suffix}</span>}
+    </div>
+  );
+};
 
 export default PersonButton;

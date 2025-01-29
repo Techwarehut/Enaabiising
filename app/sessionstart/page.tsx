@@ -538,6 +538,7 @@ export default function Session() {
 
     // If forms are already empty, return early
     if (areVerbsEmpty) {
+      resetStates();
       setSelectedType(type);
       setSelectedForm(form);
       return;
@@ -566,6 +567,16 @@ export default function Session() {
           B: { Past: [], Present: [], Future: [], Future2: [] },
           C: { Past: [], Present: [], Future: [], Future2: [] },
         });
+        if (isTypeChange) {
+          resetStates();
+        } else {
+          setSelectedTense({ tense: "", type: "" });
+          setSelectedPerson("");
+          setSelectedPerson2({ person2: "", action: "", replaceString: "" });
+          setVerbConjugated(false);
+          //setWordInVerb("");
+        }
+
         setSelectedType(type);
         setSelectedForm(form);
       });
@@ -573,6 +584,25 @@ export default function Session() {
     } else {
       setSelectedType(type);
       setSelectedForm(form);
+    }
+  };
+
+  const handleWordSelection = (word: string) => {
+    if (selectedWord === "") {
+      setSelectedWord(word.toLowerCase());
+      setWordInVerb(word.toLowerCase());
+    } else {
+      setPendingAction(() => () => {
+        setConjugatedVerbs({
+          A: { Past: [], Present: [], Future: [], Future2: [] },
+          B: { Past: [], Present: [], Future: [], Future2: [] },
+          C: { Past: [], Present: [], Future: [], Future2: [] },
+        });
+        resetStates();
+        setSelectedWord(word.toLowerCase());
+        setWordInVerb(word.toLowerCase());
+      });
+      setIsDialogOpen(true);
     }
   };
 
@@ -729,8 +759,7 @@ export default function Session() {
                           <Button
                             variant="ghost"
                             onClick={() => {
-                              setSelectedWord(word.toLowerCase());
-                              setWordInVerb(word.toLowerCase());
+                              handleWordSelection(word.toLowerCase());
                             }}
                           >
                             {word}
@@ -782,16 +811,19 @@ export default function Session() {
               <table className="w-full bg-white ">
                 <thead>
                   <tr>
-                    <th className="w-1/8 border border-black border-t-0 px-4 py-2  ">
+                    <th className="w-1/12 border border-black border-t-0 px-4 py-2  ">
                       {" "}
                     </th>
-                    <th className="w-1/4 border border-black  border-t-0 px-4 py-2 ">
+                    <th className="w-1/12 border border-black border-t-0 px-4 py-2  ">
+                      {" "}
+                    </th>
+                    <th className="w-1/3 border border-black  border-t-0 px-4 py-2 ">
                       A Form
                     </th>
-                    <th className="w-1/4 border border-black  border-t-0 px-4 py-2">
+                    <th className="w-1/3 border border-black  border-t-0 px-4 py-2">
                       B Form
                     </th>
-                    <th className="w-1/4 border-black border   border-t-0 px-4 py-2">
+                    <th className="w-1/3 border-black border   border-t-0 px-4 py-2">
                       C Form
                     </th>
                     {selectedType != "VII" &&
@@ -808,7 +840,14 @@ export default function Session() {
                     (tense) => (
                       <tr key={tense}>
                         <td className="border border-black p-2">
-                          {tense === "Future2" ? "Future" : tense}
+                          <div className="flex justify-center">
+                            <span className="block transform rotate-90 whitespace-nowrap">
+                              {tense === "Future2" ? "Future" : tense}
+                            </span>
+                          </div>
+                        </td>
+                        <td className="border border-black p-2">
+                          {/* Verb specific */}
                         </td>
                         {["A", "B", "C"].map((form) => (
                           <td className="border border-black p-2" key={form}>
