@@ -12,4 +12,5 @@ export interface TableProps {
     replaceString?: string
   ) => void;
   verbConjugated: boolean; // New prop to handle reset
+  setWorkingRowIndex: (rowIndex: number) => void;
 }

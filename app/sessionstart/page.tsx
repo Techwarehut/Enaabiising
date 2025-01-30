@@ -8,6 +8,7 @@ import vtaWords from "@/components/data/VTAList";
 import vtiWords from "@/components/data/VTIList";
 import GenericCForm from "@/components/GenericCForm";
 import Header2 from "@/components/Header2";
+import VAIAFormResult, { items } from "@/components/OutputTable/VAIAFormResult";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import { Button } from "@/components/ui/button";
 import {
@@ -68,7 +69,7 @@ export default function Session() {
   const [selectedPerson, setSelectedPerson] = useState<string>("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [pendingAction, setPendingAction] = useState<(() => void) | null>(null);
-  const [isCFormSelNeeded, setCFormSelNeeded] = useState(false);
+  const [workingRowIndex, setWorkingRowIndex] = useState(-1);
 
   // Updated selectedTense to hold both tense and tense type
   const [selectedTense, setSelectedTense] = useState<{
@@ -98,6 +99,37 @@ export default function Session() {
     VTI: { A: vtiWords, B: vtiWords, C: vtiWords },
   };
 
+  // Effect to update conjugatedVerbs when items changes
+  useEffect(() => {
+    const initializeConjugatedVerbs = (length: number) => ({
+      A: {
+        Past: new Array(length).fill(""),
+        Present: new Array(length).fill("-"),
+        Future: new Array(length).fill("-"),
+        Future2: new Array(length).fill("-"),
+      },
+      B: {
+        Past: new Array(length).fill("-"),
+        Present: new Array(length).fill("-"),
+        Future: new Array(length).fill("-"),
+        Future2: new Array(length).fill("-"),
+      },
+      C: {
+        Past: new Array(length).fill("-"),
+        Present: new Array(length).fill("-"),
+        Future: new Array(length).fill("-"),
+        Future2: new Array(length).fill("-"),
+      },
+    });
+
+    // Update conjugatedVerbs state whenever items changes
+    setConjugatedVerbs(initializeConjugatedVerbs(items.length));
+  }, [items.length]); // Dependency on items.length to trigger the effect
+
+  /*   useEffect(() => {
+    console.log(workingRowIndex);
+  }, [workingRowIndex]); */
+
   const renderFormComponent = () => {
     const isBFormComplete =
       conjugatedVerbs.B.Past.length > 0 &&
@@ -120,6 +152,7 @@ export default function Session() {
               }
               setSelectedPerson2={handlePerson2Change}
               verbConjugated={verbConjugated}
+              setWorkingRowIndex={setWorkingRowIndex}
             />
           );
         } else if (selectedForm === "B FORM") {
@@ -135,6 +168,7 @@ export default function Session() {
               }
               setSelectedPerson2={handlePerson2Change}
               verbConjugated={verbConjugated}
+              setWorkingRowIndex={setWorkingRowIndex}
             />
           );
         } else if (selectedForm === "C FORM") {
@@ -152,6 +186,7 @@ export default function Session() {
               }
               setSelectedPerson2={handlePerson2Change}
               verbConjugated={verbConjugated}
+              setWorkingRowIndex={setWorkingRowIndex}
             />
           );
         } else if (selectedForm === "B FORM-NEGATIVE") {
@@ -167,6 +202,7 @@ export default function Session() {
               }
               setSelectedPerson2={handlePerson2Change}
               verbConjugated={verbConjugated}
+              setWorkingRowIndex={setWorkingRowIndex}
             />
           );
         } else if (selectedForm === "C FORM-NEGATIVE") {
@@ -189,6 +225,7 @@ export default function Session() {
               }
               setSelectedPerson2={handlePerson2Change}
               verbConjugated={verbConjugated}
+              setWorkingRowIndex={setWorkingRowIndex}
             />
           );
         } else if (selectedForm === "B FORM") {
@@ -204,6 +241,7 @@ export default function Session() {
               }
               setSelectedPerson2={handlePerson2Change}
               verbConjugated={verbConjugated}
+              setWorkingRowIndex={setWorkingRowIndex}
             />
           );
         } else if (selectedForm === "C FORM") {
@@ -219,6 +257,7 @@ export default function Session() {
               }
               setSelectedPerson2={handlePerson2Change}
               verbConjugated={verbConjugated}
+              setWorkingRowIndex={setWorkingRowIndex}
             />
           );
         } else if (selectedForm === "A FORM-NEGATIVE") {
@@ -234,6 +273,7 @@ export default function Session() {
               }
               setSelectedPerson2={handlePerson2Change}
               verbConjugated={verbConjugated}
+              setWorkingRowIndex={setWorkingRowIndex}
             />
           );
         } else if (selectedForm === "B FORM-NEGATIVE") {
@@ -249,6 +289,7 @@ export default function Session() {
               }
               setSelectedPerson2={handlePerson2Change}
               verbConjugated={verbConjugated}
+              setWorkingRowIndex={setWorkingRowIndex}
             />
           );
         } else if (selectedForm === "C FORM-NEGATIVE") {
@@ -264,6 +305,7 @@ export default function Session() {
               }
               setSelectedPerson2={handlePerson2Change}
               verbConjugated={verbConjugated}
+              setWorkingRowIndex={setWorkingRowIndex}
             />
           );
         }
@@ -282,6 +324,7 @@ export default function Session() {
               }
               setSelectedPerson2={handlePerson2Change}
               verbConjugated={verbConjugated}
+              setWorkingRowIndex={setWorkingRowIndex}
             />
           );
         } else if (selectedForm === "B FORM") {
@@ -297,6 +340,7 @@ export default function Session() {
               }
               setSelectedPerson2={handlePerson2Change}
               verbConjugated={verbConjugated}
+              setWorkingRowIndex={setWorkingRowIndex}
             />
           );
         } else if (selectedForm === "C FORM") {
@@ -314,6 +358,7 @@ export default function Session() {
               }
               setSelectedPerson2={handlePerson2Change}
               verbConjugated={verbConjugated}
+              setWorkingRowIndex={setWorkingRowIndex}
             />
           );
         } else if (selectedForm === "B FORM-NEGATIVE") {
@@ -329,6 +374,7 @@ export default function Session() {
               }
               setSelectedPerson2={handlePerson2Change}
               verbConjugated={verbConjugated}
+              setWorkingRowIndex={setWorkingRowIndex}
             />
           );
         } else if (selectedForm === "C FORM-NEGATIVE") {
@@ -350,6 +396,7 @@ export default function Session() {
               }
               setSelectedPerson2={handlePerson2Change}
               verbConjugated={verbConjugated}
+              setWorkingRowIndex={setWorkingRowIndex}
             />
           );
         } else if (selectedForm === "B FORM") {
@@ -365,6 +412,7 @@ export default function Session() {
               }
               setSelectedPerson2={handlePerson2Change}
               verbConjugated={verbConjugated}
+              setWorkingRowIndex={setWorkingRowIndex}
             />
           );
         } else if (selectedForm === "C FORM") {
@@ -382,6 +430,7 @@ export default function Session() {
               }
               setSelectedPerson2={handlePerson2Change}
               verbConjugated={verbConjugated}
+              setWorkingRowIndex={setWorkingRowIndex}
             />
           );
         } else if (selectedForm === "B FORM-NEGATIVE") {
@@ -397,6 +446,7 @@ export default function Session() {
               }
               setSelectedPerson2={handlePerson2Change}
               verbConjugated={verbConjugated}
+              setWorkingRowIndex={setWorkingRowIndex}
             />
           );
         } else if (selectedForm === "C FORM-NEGATIVE") {
@@ -614,8 +664,6 @@ export default function Session() {
     // Set the new person2
     setSelectedPerson2({ action, person2, replaceString });
 
-    console.log(person2, action, replaceString);
-
     // Handle the replace logic
     if (action === "replace") {
       if (replaceString.length === 1) {
@@ -678,6 +726,13 @@ export default function Session() {
   };
 
   const currentList = formLists[selectedType][selectedForm.split(" ")[0]]; // Get the list based on selected type and form
+
+  const formType =
+    selectedForm === "A FORM" ||
+    selectedForm === "B FORM" ||
+    selectedForm === "C FORM"
+      ? "Positive"
+      : "Negative";
 
   return (
     <ProtectedRoute>
@@ -809,12 +864,18 @@ export default function Session() {
 
             <div className="overflow-x-auto w-full border-2 border-black rounded-md shadow-3xl shadow-black">
               <table className="w-full bg-white ">
+                <caption
+                  style={{ textAlign: "center" }}
+                  className="font-bold border border-black"
+                >
+                  {selectedType} {formType} - {selectedWord}
+                </caption>
                 <thead>
                   <tr>
-                    <th className="w-1/12 border border-black border-t-0 px-4 py-2  ">
+                    <th className="w-1/36 border border-black border-t-0 px-4 py-2  ">
                       {" "}
                     </th>
-                    <th className="w-1/12 border border-black border-t-0 px-4 py-2  ">
+                    <th className="w-1/6 border border-black border-t-0 px-4 py-2  ">
                       {" "}
                     </th>
                     <th className="w-1/3 border border-black  border-t-0 px-4 py-2 ">
@@ -837,7 +898,7 @@ export default function Session() {
                 </thead>
                 <tbody>
                   {(["Past", "Present", "Future", "Future2"] as Tense[]).map(
-                    (tense) => (
+                    (tense, index) => (
                       <tr key={tense}>
                         <td className="border border-black p-2">
                           <div className="flex justify-center">
@@ -848,14 +909,30 @@ export default function Session() {
                         </td>
                         <td className="border border-black p-2">
                           {/* Verb specific */}
+                          {/* {selectedType === "VAI" &&
+                            selectedForm === "A FORM" && (
+                              <VAIAFormResult index={index} />
+                            )} */}
+                          {items.map((item, idx) => (
+                            <div key={idx} className="py-1">
+                              {item}
+                            </div>
+                          ))}
                         </td>
                         {["A", "B", "C"].map((form) => (
                           <td className="border border-black p-2" key={form}>
-                            {conjugatedVerbs[form as Form][tense as Tense].map(
+                            {/* {conjugatedVerbs[form as Form][tense as Tense].map(
                               (verb, index) => (
                                 <div key={index}>{verb}</div>
                               )
-                            )}
+                            )} */}
+                            {items.map((_, idx) => (
+                              <div key={idx} className="py-1">
+                                {conjugatedVerbs[form as Form][tense as Tense][
+                                  idx
+                                ] ?? "NA"}
+                              </div>
+                            ))}
                           </td>
                         ))}
                         {selectedType != "VII" &&
