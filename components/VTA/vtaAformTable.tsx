@@ -19,6 +19,7 @@ const VtaFormATable: React.FC<TableProps> = ({
   setSelectedTense,
   setSelectedPerson2,
   verbConjugated,
+  setWorkingRowIndex,
 }) => {
   const [activeRow, setActiveRow] = useState<number>(-1);
 
@@ -82,6 +83,8 @@ const VtaFormATable: React.FC<TableProps> = ({
                 handleRowClick={handleRowClick}
                 selectedTense={selectedTense}
                 selectedWord={selectedWord}
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={1}
               />
             </td>
             <td className="border border-black" rowSpan={6}>
@@ -93,6 +96,7 @@ const VtaFormATable: React.FC<TableProps> = ({
                 selectedWord={selectedWord}
                 setSelectedTense={setSelectedTense}
                 selectedPerson={selectedPerson}
+                allowedActiveRows={[0, 1, 2, 3, 4, 5]}
               />
             </td>
             {/* VAI Cell */}
@@ -142,29 +146,34 @@ const VtaFormATable: React.FC<TableProps> = ({
                 label="ni"
                 rule=""
                 activeRow={activeRow}
-                rowIndex={0}
+                rowIndex={1}
                 setSelectedPerson={setSelectedPerson}
                 handleRowClick={handleRowClick}
                 selectedTense={selectedTense}
                 selectedWord={selectedWord}
+                oppositeRule="(b,d,g)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={2}
               />
               <PersonButton
                 label="in"
                 rule="(b,d,g)"
                 activeRow={activeRow}
-                rowIndex={0}
+                rowIndex={1}
                 setSelectedPerson={setSelectedPerson}
                 handleRowClick={handleRowClick}
                 selectedTense={selectedTense}
                 selectedWord={selectedWord}
                 suffix=" - (b,d,g)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={2}
               />
             </td>
             <td className="flex flex-row border-t border-black">
               <Person2RuleButtonRep
                 label="naa"
                 suffix="(zh) -> "
-                rowIndex={0}
+                rowIndex={1}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson2={setSelectedPerson2}
@@ -174,7 +183,7 @@ const VtaFormATable: React.FC<TableProps> = ({
               <Person2RuleButton
                 label="aa"
                 suffix="(m/n/’/aw) - "
-                rowIndex={0}
+                rowIndex={1}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson2={setSelectedPerson2}
@@ -187,16 +196,18 @@ const VtaFormATable: React.FC<TableProps> = ({
           {/* ----------------Row for "S/he, it"----------------------*/}
           <tr>
             <td className="border border-black">You - me</td>
-            <td className="border border-black" rowSpan={2}>
+            <td className="border border-black">
               <PersonButton
                 label="gi"
                 rule=""
                 activeRow={activeRow}
-                rowIndex={0}
+                rowIndex={2}
                 setSelectedPerson={setSelectedPerson}
                 handleRowClick={handleRowClick}
                 selectedTense={selectedTense}
                 selectedWord={selectedWord}
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={3}
               />
             </td>
 
@@ -204,7 +215,7 @@ const VtaFormATable: React.FC<TableProps> = ({
               <Person2RuleButton
                 label=" "
                 suffix="(zh/m/n/’/aw) - "
-                rowIndex={0}
+                rowIndex={2}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson2={setSelectedPerson2}
@@ -217,12 +228,26 @@ const VtaFormATable: React.FC<TableProps> = ({
           {/*------------ Row for "His/Her"------------------- */}
           <tr>
             <td className="border border-black">You - h/</td>
+            <td className="border border-black">
+              <PersonButton
+                label="gi"
+                rule=""
+                activeRow={activeRow}
+                rowIndex={3}
+                setSelectedPerson={setSelectedPerson}
+                handleRowClick={handleRowClick}
+                selectedTense={selectedTense}
+                selectedWord={selectedWord}
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={4}
+              />
+            </td>
 
             <td className="flex flex-row border-b border-black">
               <Person2RuleButtonRep
                 label="naa"
                 suffix="(zh) -> "
-                rowIndex={0}
+                rowIndex={3}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson2={setSelectedPerson2}
@@ -232,7 +257,7 @@ const VtaFormATable: React.FC<TableProps> = ({
               <Person2RuleButton
                 label="aa"
                 suffix="(m/n/’/aw) - "
-                rowIndex={0}
+                rowIndex={3}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson2={setSelectedPerson2}
@@ -252,30 +277,35 @@ const VtaFormATable: React.FC<TableProps> = ({
                 label="ni"
                 rule=""
                 activeRow={activeRow}
-                rowIndex={0}
+                rowIndex={4}
                 setSelectedPerson={setSelectedPerson}
                 handleRowClick={handleRowClick}
                 selectedTense={selectedTense}
                 selectedWord={selectedWord}
+                oppositeRule="(b,d,g)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={5}
               />
               <PersonButton
                 label="in"
                 rule="(b,d,g)"
                 activeRow={activeRow}
-                rowIndex={0}
+                rowIndex={4}
                 setSelectedPerson={setSelectedPerson}
                 handleRowClick={handleRowClick}
                 selectedTense={selectedTense}
                 selectedWord={selectedWord}
                 suffix=" - (b,d,g)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={5}
               />
             </td>
 
-            <td className="flex flex-row " rowSpan={2}>
+            <td className="flex flex-row ">
               <Person2RuleButtonRep
                 label="nig"
                 suffix="(zh) -> "
-                rowIndex={0}
+                rowIndex={4}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson2={setSelectedPerson2}
@@ -285,7 +315,7 @@ const VtaFormATable: React.FC<TableProps> = ({
               <Person2RuleButton
                 label="ig"
                 suffix="(m/n/’) - "
-                rowIndex={0}
+                rowIndex={4}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson2={setSelectedPerson2}
@@ -295,7 +325,7 @@ const VtaFormATable: React.FC<TableProps> = ({
               <Person2RuleButtonRep
                 label="aag"
                 suffix="(aw) -> "
-                rowIndex={0}
+                rowIndex={4}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson2={setSelectedPerson2}
@@ -314,11 +344,45 @@ const VtaFormATable: React.FC<TableProps> = ({
                 label="gi"
                 rule=""
                 activeRow={activeRow}
-                rowIndex={0}
+                rowIndex={5}
                 setSelectedPerson={setSelectedPerson}
                 handleRowClick={handleRowClick}
                 selectedTense={selectedTense}
                 selectedWord={selectedWord}
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={6}
+              />
+            </td>
+            <td className="flex flex-row border-t border-black">
+              <Person2RuleButtonRep
+                label="nig"
+                suffix="(zh) -> "
+                rowIndex={5}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(zh)"
+              />
+              <Person2RuleButton
+                label="ig"
+                suffix="(m/n/’) - "
+                rowIndex={5}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(n,m,’)"
+              />
+              <Person2RuleButtonRep
+                label="aag"
+                suffix="(aw) -> "
+                rowIndex={5}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(aw)"
               />
             </td>
           </tr>
@@ -331,11 +395,13 @@ const VtaFormATable: React.FC<TableProps> = ({
                 label="wi"
                 rule=""
                 activeRow={activeRow}
-                rowIndex={1}
+                rowIndex={6}
                 setSelectedPerson={setSelectedPerson}
                 handleRowClick={handleRowClick}
                 selectedTense={selectedTense}
                 selectedWord={selectedWord}
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={7}
               />
             </td>
             <td className="border border-black" rowSpan={6}>
@@ -343,10 +409,11 @@ const VtaFormATable: React.FC<TableProps> = ({
                 labels={["gii", "d-(V)", "wii", "da"]}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
-                rowIndex={1}
+                rowIndex={6}
                 selectedWord={selectedWord}
                 setSelectedTense={setSelectedTense}
                 selectedPerson={selectedPerson}
+                // allowedActiveRows={[2, 3]}
               />
             </td>
 
@@ -354,7 +421,7 @@ const VtaFormATable: React.FC<TableProps> = ({
               <Person2RuleButtonRep
                 label="naan"
                 suffix="(zh) -> "
-                rowIndex={1}
+                rowIndex={6}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson2={setSelectedPerson2}
@@ -364,7 +431,7 @@ const VtaFormATable: React.FC<TableProps> = ({
               <Person2RuleButton
                 label="aan"
                 suffix="(m/n/’/aw) - "
-                rowIndex={1}
+                rowIndex={6}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson2={setSelectedPerson2}

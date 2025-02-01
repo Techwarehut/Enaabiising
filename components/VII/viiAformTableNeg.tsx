@@ -73,13 +73,13 @@ const ViiFormATableNeg: React.FC<TableProps> = ({
           <tr>
             <td className="border border-black">It</td>
             <td className="border border-black" rowSpan={4}>
-              <EmptyButtonPerson
+              {/*  <EmptyButtonPerson
                 rowIndex={0}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson={setSelectedPerson}
                 selectedWord={selectedWord}
-              />
+              /> */}
             </td>
             <td className="border border-black" rowSpan={4}>
               <TenseButtonGroup
@@ -106,6 +106,8 @@ const ViiFormATableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(V)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={1}
               />
               <Person2RuleButton
                 label="zinoo"
@@ -116,6 +118,8 @@ const ViiFormATableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(n)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={1}
               />
               <Person2RuleButtonRep
                 label="sinoo"
@@ -126,6 +130,8 @@ const ViiFormATableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(d)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={1}
               />
             </td>
           </tr>
@@ -143,6 +149,8 @@ const ViiFormATableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(V)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={2}
               />
               <Person2RuleButton
                 label="zinoon"
@@ -153,6 +161,8 @@ const ViiFormATableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(n)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={2}
               />
               <Person2RuleButtonRep
                 label="sinoon"
@@ -163,6 +173,8 @@ const ViiFormATableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(d)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={2}
               />
             </td>
           </tr>
@@ -181,6 +193,8 @@ const ViiFormATableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(V)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={3}
               />
               <Person2RuleButton
                 label="zinooni"
@@ -191,6 +205,8 @@ const ViiFormATableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(n)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={3}
               />
               <Person2RuleButtonRep
                 label="sinooni"
@@ -201,6 +217,8 @@ const ViiFormATableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(d)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={3}
               />
             </td>
           </tr>
@@ -219,6 +237,8 @@ const ViiFormATableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(V)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={4}
               />
               <Person2RuleButton
                 label="zininiwan"
@@ -229,6 +249,8 @@ const ViiFormATableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(n)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={4}
               />
               <Person2RuleButtonRep
                 label="sininiwan"
@@ -239,6 +261,8 @@ const ViiFormATableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(d)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={4}
               />
             </td>
           </tr>

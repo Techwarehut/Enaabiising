@@ -16,18 +16,54 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { verbOptions } from "./data/CFormComboBox";
+import { tenseBasedOptions, verbOptions } from "./data/CFormComboBox";
+import { Tense } from "@/app/sessionstart/page";
 
 interface ComboboxProps {
   verbType: "VAI" | "VII" | "VTA" | "VTI";
+  tense: string;
+  selectedWord: string;
   onSelect: (value: string) => void; // Callback prop to send selection back
 }
 
-export function Combobox({ verbType, onSelect }: ComboboxProps) {
+export function Combobox({
+  verbType,
+  tense,
+  selectedWord,
+  onSelect,
+}: ComboboxProps) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
 
-  const frameworks = verbOptions[verbType] || [];
+  const getFilteredPresentOptions = (selectedWord: string) => {
+    if (tense !== "Present") return tenseBasedOptions[tense as Tense] || [];
+
+    const presentOptions = tenseBasedOptions.Present;
+    const occurrenceMap = new Map<string, number>();
+
+    presentOptions.forEach(({ value }) => {
+      const [key] = value.split("->"); // Extract the key (e.g., "aa" from "aa->ayaa")
+      const index = selectedWord.indexOf(key);
+
+      if (index !== -1 && !occurrenceMap.has(key)) {
+        occurrenceMap.set(key, index);
+      }
+    });
+
+    if (occurrenceMap.size === 0) return [];
+
+    const entriesArray = Array.from(occurrenceMap.entries());
+    const firstTransformation = entriesArray.sort((a, b) => a[1] - b[1])[0][0];
+
+    return presentOptions.filter(({ value }) =>
+      value.startsWith(firstTransformation + "->")
+    );
+  };
+
+  //const frameworks = verbOptions[verbType] || [];
+  // const frameworks = tenseBasedOptions[tense as Tense] || [];
+  // Replace frameworks initialization with filtered options
+  const frameworks = getFilteredPresentOptions(selectedWord);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>

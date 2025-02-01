@@ -107,6 +107,8 @@ const VaiFormBTableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(V)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={1}
               />
               <Person2RuleButton
                 label="ziwaanh"
@@ -117,6 +119,8 @@ const VaiFormBTableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(n)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={1}
               />
 
               <Person2RuleButtonRep
@@ -128,6 +132,8 @@ const VaiFormBTableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(m)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={1}
               />
             </td>
           </tr>
@@ -145,6 +151,8 @@ const VaiFormBTableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(V)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={2}
               />
               <Person2RuleButton
                 label="ziwan"
@@ -155,6 +163,8 @@ const VaiFormBTableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(n)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={2}
               />
 
               <Person2RuleButtonRep
@@ -166,6 +176,8 @@ const VaiFormBTableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(m)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={2}
               />
             </td>
           </tr>
@@ -184,6 +196,8 @@ const VaiFormBTableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(V)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={3}
               />
               <Person2RuleButton
                 label="zig"
@@ -194,6 +208,8 @@ const VaiFormBTableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(n)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={3}
               />
 
               <Person2RuleButtonRep
@@ -205,6 +221,8 @@ const VaiFormBTableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(m)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={3}
               />
             </td>
           </tr>
@@ -223,6 +241,8 @@ const VaiFormBTableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(V)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={4}
               />
               <Person2RuleButton
                 label="zinig"
@@ -233,6 +253,8 @@ const VaiFormBTableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(n)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={4}
               />
 
               <Person2RuleButtonRep
@@ -244,6 +266,8 @@ const VaiFormBTableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(m)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={4}
               />
             </td>
           </tr>
@@ -262,6 +286,8 @@ const VaiFormBTableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(V)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={5}
               />
               <Person2RuleButton
                 label="zing"
@@ -272,6 +298,8 @@ const VaiFormBTableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(n)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={5}
               />
 
               <Person2RuleButtonRep
@@ -283,6 +311,8 @@ const VaiFormBTableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(m)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={5}
               />
             </td>
           </tr>
@@ -301,6 +331,8 @@ const VaiFormBTableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(V)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={6}
               />
               <Person2RuleButton
                 label="ziwaang"
@@ -311,6 +343,8 @@ const VaiFormBTableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(n)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={6}
               />
 
               <Person2RuleButtonRep
@@ -322,6 +356,8 @@ const VaiFormBTableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(m)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={6}
               />
             </td>
           </tr>
@@ -339,6 +375,8 @@ const VaiFormBTableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(V)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={7}
               />
               <Person2RuleButton
                 label="ziwang"
@@ -349,6 +387,8 @@ const VaiFormBTableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(n)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={7}
               />
 
               <Person2RuleButtonRep
@@ -360,6 +400,8 @@ const VaiFormBTableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(m)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={7}
               />
             </td>
           </tr>
@@ -378,6 +420,8 @@ const VaiFormBTableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(V)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={8}
               />
               <Person2RuleButton
                 label="ziweg"
@@ -388,6 +432,8 @@ const VaiFormBTableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(n)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={8}
               />
 
               <Person2RuleButtonRep
@@ -399,6 +445,8 @@ const VaiFormBTableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(m)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={8}
               />
             </td>
           </tr>
@@ -417,6 +465,8 @@ const VaiFormBTableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(V)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={9}
               />
               <Person2RuleButton
                 label="zigwaa"
@@ -427,6 +477,8 @@ const VaiFormBTableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(n)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={9}
               />
 
               <Person2RuleButtonRep
@@ -438,6 +490,8 @@ const VaiFormBTableNeg: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(m)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={9}
               />
             </td>
           </tr>

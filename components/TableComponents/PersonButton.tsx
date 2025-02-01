@@ -13,6 +13,8 @@ interface PersonButtonProps {
   selectedWord: string;
   suffix?: string; // Optional suffix prop
   oppositeRule?: string;
+  setWorkingRowIndex?: (rowIndex: number) => void;
+  pronounRow?: number;
 }
 
 const PersonButton: React.FC<PersonButtonProps> = ({
@@ -26,6 +28,8 @@ const PersonButton: React.FC<PersonButtonProps> = ({
   selectedWord,
   suffix,
   oppositeRule,
+  setWorkingRowIndex,
+  pronounRow,
 }) => {
   const word = selectedTense === " " ? selectedWord : selectedTense;
   return (
@@ -36,6 +40,7 @@ const PersonButton: React.FC<PersonButtonProps> = ({
         onClick={() => {
           setSelectedPerson(`${label}`);
           handleRowClick(rowIndex);
+          if (setWorkingRowIndex && pronounRow) setWorkingRowIndex(pronounRow);
         }}
         disabled={
           !selectedWord ||

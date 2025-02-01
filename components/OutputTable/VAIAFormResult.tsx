@@ -4,7 +4,7 @@ interface VAIAFormResultProps {
   index: number;
 }
 
-export const items = [
+export const VAIItems = [
   "I",
   "You",
   "S/he, it",
@@ -16,28 +16,26 @@ export const items = [
   "They",
 ];
 
-const VAIAFormResult: React.FC<VAIAFormResultProps> = ({ index }) => {
-  const items = [
-    "I",
-    "You",
-    "S/he, it",
-    "His/Her",
-    "Unspecified / X",
-    "We (exclusive)",
-    "We (inclusive)",
-    "Y’all",
-    "They",
-  ];
+export const VIIItems = ["It", "They", "H/", "H/s"];
 
-  return (
-    <div className="flex flex-col space-y-2">
-      {items.map((item, i) => (
-        <div key={i} className="p-2 bg-gray-100 rounded-md">
-          {item}
-        </div>
-      ))}
-    </div>
-  );
-};
+export const VTAItems = [
+  "I-you",
+  "I - h/",
+  "You - me",
+  "You - h/",
+  "S/he - me",
+  "S/he - you",
+  "S/he - h/",
+];
 
-export default VAIAFormResult;
+export const VTIItems = [
+  "I - it",
+  "You - it",
+  "S/he - it",
+  "H/ - it",
+  "Unspecified / X",
+  "We (exc) - it",
+  "We (inc) - it",
+  "Y’all - it",
+  "They - it",
+];

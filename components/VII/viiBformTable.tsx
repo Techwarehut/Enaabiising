@@ -95,7 +95,7 @@ const ViiFormBTable: React.FC<TableProps> = ({
             <td className="border border-black" rowSpan={4}>
               {selectedWord}
             </td>
-            <td className="border border-black" rowSpan={2}>
+            <td className="flex flex-row border-b border-black">
               <Person2RuleButton
                 label="g"
                 suffix="(V) - "
@@ -105,6 +105,8 @@ const ViiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(V)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={1}
               />
               <Person2RuleButton
                 label="g"
@@ -115,6 +117,8 @@ const ViiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(n)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={1}
               />
               <Person2RuleButton
                 label="k"
@@ -125,6 +129,8 @@ const ViiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(d)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={1}
               />
             </td>
           </tr>
@@ -132,13 +138,51 @@ const ViiFormBTable: React.FC<TableProps> = ({
           {/* ------------Row for "They"------------------- */}
           <tr>
             <td className="border border-black">They</td>
+            <td className=" flex flex-row border-b border-black">
+              <Person2RuleButton
+                label="g"
+                suffix="(V) - "
+                rowIndex={0}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(V)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={2}
+              />
+              <Person2RuleButton
+                label="g"
+                suffix="(N) - "
+                rowIndex={0}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(n)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={2}
+              />
+              <Person2RuleButton
+                label="k"
+                suffix="(D) - "
+                rowIndex={0}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(d)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={2}
+              />
+            </td>
           </tr>
 
           {/* ----------------Row for "H/"----------------------*/}
           <tr>
             <td className="border border-black">H/</td>
 
-            <td className="flex flex-row  border-black" rowSpan={2}>
+            <td className="flex flex-row  border-b border-black">
               <Person2RuleButton
                 label="nig"
                 suffix="(V) - "
@@ -148,6 +192,8 @@ const ViiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(V)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={3}
               />
               <Person2RuleButton
                 label="inig"
@@ -158,6 +204,8 @@ const ViiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(d,n)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={3}
               />
             </td>
           </tr>
@@ -165,6 +213,32 @@ const ViiFormBTable: React.FC<TableProps> = ({
           {/*------------ Row for "H/s"------------------- */}
           <tr>
             <td className="border border-black">H/s</td>
+            <td className="flex flex-row  border-black">
+              <Person2RuleButton
+                label="nig"
+                suffix="(V) - "
+                rowIndex={0}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(V)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={4}
+              />
+              <Person2RuleButton
+                label="inig"
+                suffix="(D/N) - "
+                rowIndex={0}
+                activeRow={activeRow}
+                handleRowClick={handleRowClick}
+                setSelectedPerson2={setSelectedPerson2}
+                selectedWord={selectedWord}
+                rule="(d,n)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={4}
+              />
+            </td>
           </tr>
         </tbody>
       </table>

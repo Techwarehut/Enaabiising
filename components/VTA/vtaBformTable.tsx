@@ -19,6 +19,7 @@ const VtaFormBTable: React.FC<TableProps> = ({
   setSelectedTense,
   setSelectedPerson2,
   verbConjugated,
+  setWorkingRowIndex,
 }) => {
   const [activeRow, setActiveRow] = useState<number>(-1);
 
@@ -106,6 +107,8 @@ const VtaFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(zh)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={1}
               />
               <Person2RuleButton
                 label="inaa"
@@ -116,6 +119,8 @@ const VtaFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(n,m,’)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={1}
               />
               <Person2RuleButton
                 label="inaa"
@@ -126,6 +131,8 @@ const VtaFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(aw)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={1}
               />
             </td>
           </tr>
@@ -144,6 +151,8 @@ const VtaFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(zh)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={2}
               />
               <Person2RuleButton
                 label="ag"
@@ -154,6 +163,8 @@ const VtaFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(n,m,’,aw)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={2}
               />
             </td>
           </tr>
@@ -172,6 +183,8 @@ const VtaFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(zh,n,m,’,aw)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={3}
               />
             </td>
           </tr>
@@ -190,6 +203,8 @@ const VtaFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(zh)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={4}
               />
               <Person2RuleButton
                 label="ad"
@@ -200,6 +215,8 @@ const VtaFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(n,m,’,aw)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={4}
               />
             </td>
           </tr>
@@ -218,6 +235,8 @@ const VtaFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(zh,n,m,’,aw)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={5}
               />
             </td>
           </tr>
@@ -235,16 +254,20 @@ const VtaFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(zh)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={6}
               />
               <Person2RuleButton
                 label="ik"
                 suffix="(m/n/’) - "
-                rowIndex={1}
+                rowIndex={0}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(n,m,’)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={6}
               />
               <Person2RuleButtonRep
                 label="aak"
@@ -255,6 +278,8 @@ const VtaFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(aw)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={6}
               />
             </td>
           </tr>
@@ -273,16 +298,20 @@ const VtaFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(zh)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={7}
               />
               <Person2RuleButton
                 label="aad"
                 suffix="(m/n/’/aw) - "
-                rowIndex={1}
+                rowIndex={0}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(n,m,’,aw)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={7}
               />
             </td>
           </tr>

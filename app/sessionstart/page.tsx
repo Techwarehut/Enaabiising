@@ -8,7 +8,13 @@ import vtaWords from "@/components/data/VTAList";
 import vtiWords from "@/components/data/VTIList";
 import GenericCForm from "@/components/GenericCForm";
 import Header2 from "@/components/Header2";
-import VAIAFormResult, { items } from "@/components/OutputTable/VAIAFormResult";
+import {
+  VAIItems,
+  VIIItems,
+  VTAItems,
+  VTIItems,
+} from "@/components/OutputTable/VAIAFormResult";
+
 import ProtectedRoute from "@/components/ProtectedRoute";
 import { Button } from "@/components/ui/button";
 import {
@@ -43,7 +49,7 @@ import "jspdf-autotable"; // Make sure to import the autoTable plugin
 import { useEffect, useState } from "react";
 
 type Form = "A" | "B" | "C";
-type Tense = "Past" | "Present" | "Future" | "Future2";
+export type Tense = "Past" | "Present" | "Future" | "Future2";
 // Define the specific verb types
 type VerbType = "VAI" | "VII" | "VTA" | "VTI";
 
@@ -70,6 +76,7 @@ export default function Session() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [pendingAction, setPendingAction] = useState<(() => void) | null>(null);
   const [workingRowIndex, setWorkingRowIndex] = useState(-1);
+  const [items, setItems] = useState<string[]>(VAIItems);
 
   // Updated selectedTense to hold both tense and tense type
   const [selectedTense, setSelectedTense] = useState<{
@@ -103,7 +110,7 @@ export default function Session() {
   useEffect(() => {
     const initializeConjugatedVerbs = (length: number) => ({
       A: {
-        Past: new Array(length).fill(""),
+        Past: new Array(length).fill("-"),
         Present: new Array(length).fill("-"),
         Future: new Array(length).fill("-"),
         Future2: new Array(length).fill("-"),
@@ -122,20 +129,27 @@ export default function Session() {
       },
     });
 
-    // Update conjugatedVerbs state whenever items changes
-    setConjugatedVerbs(initializeConjugatedVerbs(items.length));
-  }, [items.length]); // Dependency on items.length to trigger the effect
+    // Update conjugatedVerbs state whenever items changes or verb change dialog is called that reset all arrays back to 0
+    if (conjugatedVerbs.A.Past.length < items.length)
+      setConjugatedVerbs(initializeConjugatedVerbs(items.length));
+  }, [items.length, isDialogOpen]); // Dependency on items.length to trigger the effect
 
-  /*   useEffect(() => {
-    console.log(workingRowIndex);
-  }, [workingRowIndex]); */
+  useEffect(() => {
+    if (selectedType === "VAI") setItems(VAIItems);
+    if (selectedType === "VII") setItems(VIIItems);
+    if (selectedType === "VTA") setItems(VTAItems);
+    if (selectedType === "VTI") setItems(VTIItems);
+  }, [selectedType]);
 
   const renderFormComponent = () => {
-    const isBFormComplete =
+    /*     const isBFormComplete =
       conjugatedVerbs.B.Past.length > 0 &&
       conjugatedVerbs.B.Present.length > 0 &&
       conjugatedVerbs.B.Future.length > 0 &&
-      conjugatedVerbs.B.Future2.length > 0;
+      conjugatedVerbs.B.Future2.length > 0; */
+    const isBFormComplete = !["Past", "Present", "Future", "Future2"].some(
+      (tense) => conjugatedVerbs.B[tense as Tense].every((word) => word === "-")
+    );
 
     switch (selectedType) {
       case "VAI":
@@ -458,20 +472,59 @@ export default function Session() {
         return null;
     }
   };
-  // Effect to check when to set verbConjugated to true
+  /*  // Effect to check when to set verbConjugated to true
   useEffect(() => {
     if (
       selectedWord &&
       (selectedForm === "B FORM" ||
         (selectedPerson && selectedForm != "B FORM")) &&
+      (selectedForm === "B FORM-NEGATIVE" ||
+        (selectedPerson && selectedForm != "B FORM-NEGATIVE")) &&
       selectedTense.tense &&
       selectedPerson2.person2
+    ) {
+      alert("conjgated");
+      setVerbConjugated(true);
+    } else {
+      setVerbConjugated(false);
+    }
+  }, [
+    selectedWord,
+    selectedPerson,
+    selectedTense,
+    selectedPerson2,
+    selectedForm,
+  ]); */
+
+  useEffect(() => {
+    const isSelectedWordValid = !!selectedWord;
+    const isPersonAlwaysEmpty =
+      selectedForm === "B FORM" ||
+      selectedForm === "B FORM-NEGATIVE" ||
+      selectedType === "VII";
+
+    const isPersonSelected = !!selectedPerson;
+    const isTenseValid = !!selectedTense.tense;
+    const isPerson2Selected = !!selectedPerson2.person2;
+
+    // Verb conjugated when selectedWord exists, selectedForm is valid, and all other conditions are met
+    if (
+      isSelectedWordValid &&
+      isTenseValid &&
+      isPerson2Selected &&
+      (isPersonAlwaysEmpty || isPersonSelected)
     ) {
       setVerbConjugated(true);
     } else {
       setVerbConjugated(false);
     }
-  }, [selectedWord, selectedPerson, selectedTense, selectedPerson2]);
+  }, [
+    selectedWord,
+    selectedPerson,
+    selectedTense,
+    selectedPerson2,
+    selectedForm,
+  ]);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -483,7 +536,9 @@ export default function Session() {
 
   useEffect(() => {
     if (verbConjugated) {
-      const newConjugatedVerb = `${selectedPerson}${selectedTense.tense}${wordInVerb}${selectedPerson2.person2}`;
+      const newConjugatedVerb = `${selectedPerson}${selectedTense.tense.trim()}${wordInVerb}${
+        selectedPerson2.person2
+      }`;
 
       const formKey = selectedForm.split(" ")[0] as Form;
       const tenseKey = selectedTense.type as Tense;
@@ -500,20 +555,41 @@ export default function Session() {
           return prev; // Return the previous state if invalid
         }
 
+        // Ensure the index is within bounds
+        if (
+          workingRowIndex < 0 ||
+          workingRowIndex > prev[formKey][tenseKey].length
+        ) {
+          console.error(`Invalid index: ${workingRowIndex}`);
+          return prev; // Return the previous state if the index is out of bounds
+        }
+        // Create a new array with the updated value at wrokingRowIndex
+        const updatedArray = [...prev[formKey][tenseKey]];
+        updatedArray[workingRowIndex - 1] = newConjugatedVerb;
+
+        // Return the updated state
+        return {
+          ...prev,
+          [formKey]: {
+            ...prev[formKey],
+            [tenseKey]: updatedArray,
+          },
+        };
+
         // Check for duplicates
-        if (prev[formKey][tenseKey].includes(newConjugatedVerb)) {
+        /* if (prev[formKey][tenseKey].includes(newConjugatedVerb)) {
           console.warn(`Duplicate verb not added: ${newConjugatedVerb}`);
           return prev; // Return the previous state if the verb already exists
-        }
+        } */
 
         // Add the new conjugated verb
-        return {
+        /*  return {
           ...prev,
           [formKey]: {
             ...prev[formKey],
             [tenseKey]: [...prev[formKey][tenseKey], newConjugatedVerb],
           },
-        };
+        }; */
       });
 
       resetStates();
@@ -570,6 +646,10 @@ export default function Session() {
     if (isTypeChange) {
       setSelectedWord("");
     }
+    setSelectedTense({ tense: "", type: "" });
+    setSelectedPerson("");
+    setSelectedPerson2({ person2: "", action: "", replaceString: "" });
+    setVerbConjugated(false);
 
     // Check if the conjugatedVerbs are already empty
     const areVerbsEmpty =
@@ -618,12 +698,13 @@ export default function Session() {
           C: { Past: [], Present: [], Future: [], Future2: [] },
         });
         if (isTypeChange) {
-          resetStates();
+          //resetStates();
+          setWordInVerb("");
         } else {
-          setSelectedTense({ tense: "", type: "" });
+          /*  setSelectedTense({ tense: "", type: "" });
           setSelectedPerson("");
           setSelectedPerson2({ person2: "", action: "", replaceString: "" });
-          setVerbConjugated(false);
+          setVerbConjugated(false); */
           //setWordInVerb("");
         }
 
@@ -694,15 +775,27 @@ export default function Session() {
       doc.addImage(img, "PNG", 10, 10, 50, 20); // Adjust positioning and size as needed
 
       // Format header text
-      const headerText = `Name: ${userName}\nDate: ${new Date().toLocaleDateString()}\nVerb Type: ${selectedType}`;
+      const headerText = `Name: ${userName}\nDate: ${new Date().toLocaleDateString()}`;
       doc.setFontSize(12); // Set font size if needed
       doc.text(headerText, 20, 40); // Adjust Y position to avoid overlap with logo
 
-      const headers = ["Tense", "A Form", "B Form", "C Form"];
+      // Add the table title (caption)
+      doc.setFontSize(14);
+      doc.text(`${selectedType} ${formType} - ${selectedWord}`, 105, 50, {
+        align: "center",
+      });
+
+      const headers = ["", "Pronoun", "A Form", "B Form", "C Form"];
       const data: any = [];
 
-      ["Past", "Present", "Future", "Future2"].forEach((tense) => {
-        const row = [tense === "Future2" ? "Future" : tense]; // Change "Future2" to "Future"
+      ["Past", "Present", "Future", "Future2"].forEach((tense, rowIndex) => {
+        const row = [];
+        // First column: Tense (Future2 → Future)
+        row.push(tense === "Future2" ? "Future" : tense);
+
+        // Second column: Custom Data (All items in the same cell, separated by new lines)
+        row.push(items.length > 0 ? items.join("\n") : "");
+
         ["A", "B", "C"].forEach((form) => {
           const verbs = conjugatedVerbs[form as Form][tense as Tense];
           row.push(verbs ? verbs.join("\n") : ""); // Join verbs with newline or empty string if undefined
@@ -714,6 +807,22 @@ export default function Session() {
         head: [headers],
         body: data,
         startY: 60, // Adjust startY to account for header text
+        styles: { fontSize: 10, cellPadding: 2 },
+        columnStyles: {
+          0: { cellWidth: 10, halign: "center", valign: "middle" }, // First column (Tense)
+          1: { cellWidth: 30 }, // Second column (Custom data)
+          2: { cellWidth: 50 }, // A Form
+          3: { cellWidth: 50 }, // B Form
+          4: { cellWidth: 50 }, // C Form
+        },
+        didParseCell: function (data: any) {
+          if (data.column.index === 0) {
+            data.cell.styles.fontStyle = "bold"; // Make it bold (optional)
+            data.cell.text = data.cell.text.map((txt: string) =>
+              txt.split("").join("\n\n").trim()
+            ); // Rotate by breaking each letter into new lines
+          }
+        },
       });
 
       doc.save(`${selectedType}_conjugated_verbs.pdf`);
@@ -872,7 +981,7 @@ export default function Session() {
                 </caption>
                 <thead>
                   <tr>
-                    <th className="w-1/36 border border-black border-t-0 px-4 py-2  ">
+                    <th className="w-1/60 border border-black border-t-0 px-4 py-2  ">
                       {" "}
                     </th>
                     <th className="w-1/6 border border-black border-t-0 px-4 py-2  ">
@@ -914,7 +1023,14 @@ export default function Session() {
                               <VAIAFormResult index={index} />
                             )} */}
                           {items.map((item, idx) => (
-                            <div key={idx} className="py-1">
+                            <div
+                              key={idx}
+                              className={`p-2 rounded-md mb-2 whitespace-nowrap ${
+                                idx % 2 === 0
+                                  ? "bg-gray-100"
+                                  : "bg-muted text-muted-foreground"
+                              }`}
+                            >
                               {item}
                             </div>
                           ))}
@@ -927,7 +1043,14 @@ export default function Session() {
                               )
                             )} */}
                             {items.map((_, idx) => (
-                              <div key={idx} className="py-1">
+                              <div
+                                key={idx}
+                                className={`p-2 rounded-md mb-2 whitespace-nowrap ${
+                                  idx % 2 === 0
+                                    ? "bg-gray-100"
+                                    : "bg-muted text-muted-foreground"
+                                }`}
+                              >
                                 {conjugatedVerbs[form as Form][tense as Tense][
                                   idx
                                 ] ?? "NA"}
@@ -941,6 +1064,8 @@ export default function Session() {
                             <td className="border border-black p-2">
                               <Combobox
                                 verbType={selectedType}
+                                selectedWord={selectedWord}
+                                tense={tense}
                                 onSelect={(value) => handleCForm(tense, value)}
                               />
                             </td>

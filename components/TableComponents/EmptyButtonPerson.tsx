@@ -10,6 +10,8 @@ interface PersonButtonProps {
 
   setSelectedPerson: (person: string) => void; // Include this for tense setting
   selectedWord: string;
+  setWorkingRowIndex?: (rowIndex: number) => void;
+  pronounRow?: number;
 }
 
 const EmptyButtonPerson: React.FC<PersonButtonProps> = ({
@@ -19,6 +21,8 @@ const EmptyButtonPerson: React.FC<PersonButtonProps> = ({
   selectedWord,
 
   setSelectedPerson,
+  setWorkingRowIndex,
+  pronounRow,
 }) => (
   <div>
     <Button
@@ -27,6 +31,7 @@ const EmptyButtonPerson: React.FC<PersonButtonProps> = ({
       onClick={() => {
         setSelectedPerson(" ");
         handleRowClick(rowIndex); // Disable other rows
+        if (setWorkingRowIndex && pronounRow) setWorkingRowIndex(pronounRow);
       }}
       disabled={!selectedWord || (activeRow != -1 && activeRow != rowIndex)}
     ></Button>

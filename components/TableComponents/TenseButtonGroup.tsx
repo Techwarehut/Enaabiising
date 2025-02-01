@@ -11,6 +11,7 @@ interface ButtonGroupProps {
   selectedWord: string; // Add selectedWord prop
   setSelectedTense: (tense: string, time: string) => void; // Include this for tense setting
   selectedPerson: string;
+  allowedActiveRows?: number[];
 }
 
 const TenseButtonGroup: React.FC<ButtonGroupProps> = ({
@@ -22,8 +23,14 @@ const TenseButtonGroup: React.FC<ButtonGroupProps> = ({
   selectedWord,
   setSelectedTense,
   selectedPerson,
+  allowedActiveRows,
 }) => {
   const tenses = ["Past", "Present", "Future", "Future2"];
+
+  const isActiveRow = allowedActiveRows
+    ? activeRow !== -1 && !allowedActiveRows.includes(activeRow) // Check if activeRow is NOT in allowedActiveRows
+    : activeRow !== -1 && activeRow !== rowIndex; // Default condition when allowedActiveRows is empty
+
   return (
     <div>
       {labels.map((label, index) => {
@@ -61,13 +68,13 @@ const TenseButtonGroup: React.FC<ButtonGroupProps> = ({
                   variant="outline"
                   className="mb-2"
                   onClick={() => {
-                    handleRowClick(rowIndex); // Pass the same row index
+                    if (!allowedActiveRows) handleRowClick(rowIndex); // Pass the same row index
 
                     setSelectedTense(tenseSuffix, time); // Set tense
                   }}
                   disabled={
                     !selectedWord ||
-                    (activeRow !== -1 && activeRow !== rowIndex) ||
+                    /* (activeRow !== -1 && activeRow !== rowIndex) */ isActiveRow ||
                     (selectedPerson === "in" &&
                       !shouldEnableButton(ruleWord, "", "(b,d,g)", true)) ||
                     (selectedPerson === "ni" &&
@@ -83,13 +90,13 @@ const TenseButtonGroup: React.FC<ButtonGroupProps> = ({
                 variant="outline"
                 className="mb-2"
                 onClick={() => {
-                  handleRowClick(rowIndex); // Pass the same row index
+                  if (!allowedActiveRows) handleRowClick(rowIndex); // Pass the same row index
 
                   setSelectedTense(tenseSuffix, time); // Set tense
                 }}
                 disabled={
                   !selectedWord ||
-                  (activeRow !== -1 && activeRow !== rowIndex) ||
+                  /* (activeRow !== -1 && activeRow !== rowIndex) */ isActiveRow ||
                   (selectedPerson === "in" &&
                     !shouldEnableButton(baseLabel, "", "(b,d,g)", true)) ||
                   (selectedPerson === "ni" &&

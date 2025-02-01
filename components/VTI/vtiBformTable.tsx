@@ -19,6 +19,7 @@ const VtiFormBTable: React.FC<TableProps> = ({
   setSelectedTense,
   setSelectedPerson2,
   verbConjugated,
+  setWorkingRowIndex,
 }) => {
   const [activeRow, setActiveRow] = useState<number>(-1);
 
@@ -106,6 +107,8 @@ const VtiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(oon)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={1}
               />
               <Person2RuleButtonRep
                 label="iyaanh"
@@ -116,6 +119,8 @@ const VtiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(in)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={1}
               />
               <Person2RuleButtonRep
                 label="amaanh"
@@ -126,6 +131,8 @@ const VtiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(an)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={1}
               />
             </td>
           </tr>
@@ -143,6 +150,8 @@ const VtiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(oon)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={2}
               />
               <Person2RuleButtonRep
                 label="iyin"
@@ -153,6 +162,8 @@ const VtiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(in)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={2}
               />
               <Person2RuleButtonRep
                 label="aman"
@@ -163,6 +174,8 @@ const VtiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(an)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={2}
               />
             </td>
           </tr>
@@ -181,6 +194,8 @@ const VtiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(oon)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={3}
               />
               <Person2RuleButtonRep
                 label="id"
@@ -191,6 +206,8 @@ const VtiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(in)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={3}
               />
               <Person2RuleButtonRep
                 label="g"
@@ -201,6 +218,8 @@ const VtiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(an)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={3}
               />
             </td>
           </tr>
@@ -219,6 +238,8 @@ const VtiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(oon)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={4}
               />
               <Person2RuleButtonRep
                 label="inid"
@@ -229,6 +250,8 @@ const VtiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(in)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={4}
               />
               <Person2RuleButtonRep
                 label="aminid"
@@ -239,6 +262,8 @@ const VtiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(an)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={4}
               />
             </td>
           </tr>
@@ -257,6 +282,8 @@ const VtiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(oon)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={5}
               />
               <Person2RuleButtonRep
                 label="ing"
@@ -267,6 +294,8 @@ const VtiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(in)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={5}
               />
               <Person2RuleButtonRep
                 label="aming"
@@ -277,6 +306,8 @@ const VtiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(an)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={5}
               />
             </td>
           </tr>
@@ -295,6 +326,8 @@ const VtiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(oon)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={6}
               />
               <Person2RuleButtonRep
                 label="iyaang"
@@ -305,6 +338,8 @@ const VtiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(in)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={6}
               />
               <Person2RuleButtonRep
                 label="amaang"
@@ -315,6 +350,8 @@ const VtiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(an)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={6}
               />
             </td>
           </tr>
@@ -332,6 +369,8 @@ const VtiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(oon)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={7}
               />
               <Person2RuleButtonRep
                 label="iying"
@@ -342,6 +381,8 @@ const VtiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(in)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={7}
               />
               <Person2RuleButtonRep
                 label="amang"
@@ -352,6 +393,8 @@ const VtiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(an)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={7}
               />
             </td>
           </tr>
@@ -370,6 +413,8 @@ const VtiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(oon)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={8}
               />
               <Person2RuleButtonRep
                 label="iyig"
@@ -380,6 +425,8 @@ const VtiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(in)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={8}
               />
               <Person2RuleButtonRep
                 label="amiig"
@@ -390,6 +437,8 @@ const VtiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(an)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={8}
               />
             </td>
           </tr>
@@ -408,6 +457,8 @@ const VtiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(oon)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={9}
               />
               <Person2RuleButtonRep
                 label="iwaad"
@@ -418,6 +469,8 @@ const VtiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(in)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={9}
               />
               <Person2RuleButtonRep
                 label="amowaad"
@@ -428,6 +481,8 @@ const VtiFormBTable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(an)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={9}
               />
             </td>
           </tr>

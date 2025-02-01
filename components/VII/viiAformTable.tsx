@@ -72,13 +72,13 @@ const ViiFormATable: React.FC<TableProps> = ({
           <tr>
             <td className="border border-black">It</td>
             <td className="border border-black" rowSpan={4}>
-              <EmptyButtonPerson
+              {/*  <EmptyButtonPerson
                 rowIndex={0}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
                 setSelectedPerson={setSelectedPerson}
                 selectedWord={selectedWord}
-              />
+              /> */}
             </td>
             <td className="border border-black" rowSpan={4}>
               <TenseButtonGroup
@@ -103,6 +103,8 @@ const ViiFormATable: React.FC<TableProps> = ({
                 rowIndex={0}
                 selectedWord={selectedWord}
                 setSelectedPerson2={setSelectedPerson2}
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={1}
               />
             </td>
           </tr>
@@ -120,6 +122,8 @@ const ViiFormATable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(V)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={2}
               />
               <Person2RuleButton
                 label="oon"
@@ -130,6 +134,8 @@ const ViiFormATable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(d,n)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={2}
               />
             </td>
           </tr>
@@ -148,6 +154,8 @@ const ViiFormATable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(V)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={3}
               />
               <Person2RuleButton
                 label="ini"
@@ -158,6 +166,8 @@ const ViiFormATable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(d,n)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={3}
               />
             </td>
           </tr>
@@ -176,6 +186,8 @@ const ViiFormATable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(V)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={4}
               />
               <Person2RuleButton
                 label="iniwan"
@@ -186,6 +198,8 @@ const ViiFormATable: React.FC<TableProps> = ({
                 setSelectedPerson2={setSelectedPerson2}
                 selectedWord={selectedWord}
                 rule="(d,n)"
+                setWorkingRowIndex={setWorkingRowIndex}
+                pronounRow={4}
               />
             </td>
           </tr>

@@ -19,6 +19,7 @@ const VtaFormATableNeg: React.FC<TableProps> = ({
   setSelectedTense,
   setSelectedPerson2,
   verbConjugated,
+  setWorkingRowIndex,
 }) => {
   const [activeRow, setActiveRow] = useState<number>(-1);
 
@@ -148,6 +149,7 @@ const VtaFormATableNeg: React.FC<TableProps> = ({
                 handleRowClick={handleRowClick}
                 selectedTense={selectedTense}
                 selectedWord={selectedWord}
+                oppositeRule="(b,d,g)"
               />
               <PersonButton
                 label="in"
@@ -258,6 +260,7 @@ const VtaFormATableNeg: React.FC<TableProps> = ({
                 handleRowClick={handleRowClick}
                 selectedTense={selectedTense}
                 selectedWord={selectedWord}
+                oppositeRule="(b,d,g)"
               />
               <PersonButton
                 label="in"

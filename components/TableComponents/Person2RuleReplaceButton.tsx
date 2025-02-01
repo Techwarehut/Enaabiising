@@ -16,6 +16,8 @@ interface ActionButtonProps {
   handleRowClick: (index: number) => void;
   selectedWord: string;
   suffix?: string; // Optional suffix prop
+  setWorkingRowIndex?: (rowIndex: number) => void;
+  pronounRow?: number;
 }
 
 const Person2RuleButtonRep: React.FC<ActionButtonProps> = ({
@@ -27,11 +29,14 @@ const Person2RuleButtonRep: React.FC<ActionButtonProps> = ({
   handleRowClick,
   selectedWord,
   suffix,
+  setWorkingRowIndex,
+  pronounRow,
 }) => {
   const handleClick = () => {
     const cleanedRule = rule.replace(/[()]/g, ""); // Removes parentheses
     setSelectedPerson2(`${label}`, "replace", cleanedRule);
     handleRowClick(rowIndex); // Disable other rows
+    if (setWorkingRowIndex && pronounRow) setWorkingRowIndex(pronounRow);
   };
 
   return (

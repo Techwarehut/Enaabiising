@@ -12,6 +12,8 @@ interface ActionButtonProps {
   handleRowClick: (index: number) => void;
   selectedWord: string;
   suffix?: string; // Optional suffix prop
+  setWorkingRowIndex?: (rowIndex: number) => void;
+  pronounRow?: number;
 }
 
 const Person2RuleButton: React.FC<ActionButtonProps> = ({
@@ -23,10 +25,13 @@ const Person2RuleButton: React.FC<ActionButtonProps> = ({
   handleRowClick,
   selectedWord,
   suffix,
+  setWorkingRowIndex,
+  pronounRow,
 }) => {
   const handleClick = () => {
     setSelectedPerson2(`${label}`, "append");
     handleRowClick(rowIndex); // Disable other rows
+    if (setWorkingRowIndex && pronounRow) setWorkingRowIndex(pronounRow);
   };
 
   return (
