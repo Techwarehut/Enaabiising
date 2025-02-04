@@ -8,6 +8,7 @@ import DropShortVowel from "../TableComponents/DropShortVowelButton";
 import EmptyButtonPerson2 from "../TableComponents/EmptyButtonPerson2";
 import EmptyButtonPerson from "../TableComponents/EmptyButtonPerson";
 import Person2RuleButton from "../TableComponents/Person2RuleButton";
+import Person2RuleButtonRep from "../TableComponents/Person2RuleReplaceButton";
 
 const ViiFormCTable: React.FC<TableProps> = ({
   selectedWord,
@@ -120,9 +121,9 @@ const ViiFormCTable: React.FC<TableProps> = ({
                 setWorkingRowIndex={setWorkingRowIndex}
                 pronounRow={1}
               />
-              <Person2RuleButton
+              <Person2RuleButtonRep
                 label="k"
-                suffix="(D) - "
+                suffix="(D) -> "
                 rowIndex={0}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
@@ -163,9 +164,9 @@ const ViiFormCTable: React.FC<TableProps> = ({
                 setWorkingRowIndex={setWorkingRowIndex}
                 pronounRow={2}
               />
-              <Person2RuleButton
+              <Person2RuleButtonRep
                 label="kin"
-                suffix="(D) - "
+                suffix="(D) -> "
                 rowIndex={0}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}

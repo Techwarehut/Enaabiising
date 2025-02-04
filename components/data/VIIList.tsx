@@ -1,5 +1,6 @@
 const viiWords = [
-  "ate(migad)",
+  "ate",
+  "atemigad",
   "aawan",
   "baatiinad",
   "niisaajiwan",
