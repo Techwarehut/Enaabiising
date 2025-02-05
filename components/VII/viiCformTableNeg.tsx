@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
-import { TableProps } from "../TableTypes";
+import { CTableProps, TableProps } from "../TableTypes";
 import shouldEnableButton from "@/lib/utils";
 import PersonButton from "../TableComponents/PersonButton";
 import TenseButtonGroup from "../TableComponents/TenseButtonGroup";
@@ -9,8 +9,9 @@ import EmptyButtonPerson2 from "../TableComponents/EmptyButtonPerson2";
 import EmptyButtonPerson from "../TableComponents/EmptyButtonPerson";
 import Person2RuleButton from "../TableComponents/Person2RuleButton";
 import Person2RuleButtonRep from "../TableComponents/Person2RuleReplaceButton";
+import TenseButtonGroupCForm from "../TableComponents/TenseButtonGroupCForm";
 
-const ViiFormCTableNeg: React.FC<TableProps> = ({
+const ViiFormCTableNeg: React.FC<CTableProps> = ({
   selectedWord,
   selectedPerson,
   selectedTense,
@@ -20,6 +21,7 @@ const ViiFormCTableNeg: React.FC<TableProps> = ({
   setSelectedPerson2,
   verbConjugated,
   setWorkingRowIndex,
+  setWordInVerb,
 }) => {
   const [activeRow, setActiveRow] = useState<number>(-1);
 
@@ -82,7 +84,7 @@ const ViiFormCTableNeg: React.FC<TableProps> = ({
               /> */}
             </td>
             <td className="border border-black" rowSpan={4}>
-              <TenseButtonGroup
+              <TenseButtonGroupCForm
                 labels={["gaa", "e", "waa", "ge"]}
                 activeRow={activeRow}
                 handleRowClick={handleRowClick}
@@ -90,6 +92,7 @@ const ViiFormCTableNeg: React.FC<TableProps> = ({
                 selectedWord={selectedWord}
                 setSelectedTense={setSelectedTense}
                 selectedPerson={selectedPerson}
+                setWordInVerb={setWordInVerb}
               />
             </td>
             {/* VAI Cell */}

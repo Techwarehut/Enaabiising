@@ -83,6 +83,7 @@ const VaiFormATableNeg: React.FC<TableProps> = ({
                 handleRowClick={handleRowClick}
                 selectedTense={selectedTense}
                 selectedWord={selectedWord}
+                oppositeRule="(b,d,g)"
                 setWorkingRowIndex={setWorkingRowIndex}
                 pronounRow={1}
               />
@@ -334,6 +335,7 @@ const VaiFormATableNeg: React.FC<TableProps> = ({
                 handleRowClick={handleRowClick}
                 selectedTense={selectedTense}
                 selectedWord={selectedWord}
+                oppositeRule="(b,d,g)"
                 setWorkingRowIndex={setWorkingRowIndex}
                 pronounRow={6}
               />

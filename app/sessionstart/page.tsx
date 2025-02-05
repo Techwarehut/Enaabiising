@@ -272,6 +272,7 @@ export default function Session() {
               setSelectedPerson2={handlePerson2Change}
               verbConjugated={verbConjugated}
               setWorkingRowIndex={setWorkingRowIndex}
+              setWordInVerb={(word) => setWordInVerb(word)}
             />
           );
         } else if (selectedForm === "A FORM-NEGATIVE") {
@@ -320,6 +321,7 @@ export default function Session() {
               setSelectedPerson2={handlePerson2Change}
               verbConjugated={verbConjugated}
               setWorkingRowIndex={setWorkingRowIndex}
+              setWordInVerb={setWordInVerb}
             />
           );
         }
@@ -535,7 +537,12 @@ export default function Session() {
   }, []);
 
   useEffect(() => {
+    console.log("word in useeffect", wordInVerb);
+  }, [wordInVerb]);
+
+  useEffect(() => {
     if (verbConjugated) {
+      console.log("word in verb", wordInVerb);
       const newConjugatedVerb = `${selectedPerson}${selectedTense.tense.trim()}${wordInVerb}${
         selectedPerson2.person2
       }`;
@@ -635,7 +642,7 @@ export default function Session() {
     setSelectedPerson("");
     setSelectedPerson2({ person2: "", action: "", replaceString: "" });
     setVerbConjugated(false);
-    setWordInVerb("");
+    setWordInVerb(selectedWord);
   };
 
   const handleMenuSelection = (type: VerbType, form: string) => {
@@ -750,16 +757,28 @@ export default function Session() {
       if (replaceString.length === 1) {
         // If replaceString is a single character, remove it from the end of selectedWord
 
-        setWordInVerb(selectedWord.slice(0, -1)); // Drop the last character
+        if (selectedForm === "C FORM" || selectedForm === "C FORM-NEGATIVE") {
+          setWordInVerb(wordInVerb.slice(0, -1)); // Drop the last character
+        } else {
+          setWordInVerb(selectedWord.slice(0, -1)); // Drop the last character
+        }
       } else if (replaceString.length > 1) {
         // If replaceString has more than one character, check if selectedWord ends with it
         if (selectedWord.endsWith(replaceString)) {
           // Drop the replaceString from the end of selectedWord
-          setWordInVerb(selectedWord.slice(0, -replaceString.length));
+          if (selectedForm === "C FORM" || selectedForm === "C FORM-NEGATIVE") {
+            setWordInVerb(wordInVerb.slice(0, -replaceString.length));
+          } else {
+            setWordInVerb(selectedWord.slice(0, -replaceString.length));
+          }
         }
       }
     } else {
-      setWordInVerb(selectedWord);
+      if (selectedForm === "C FORM" || selectedForm === "C FORM-NEGATIVE") {
+        //do nothing
+      } else {
+        setWordInVerb(selectedWord);
+      }
     }
   };
 
