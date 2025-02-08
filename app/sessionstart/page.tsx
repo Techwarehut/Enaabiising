@@ -542,8 +542,10 @@ export default function Session() {
 
   useEffect(() => {
     if (verbConjugated) {
-      console.log("word in verb", wordInVerb);
-      const newConjugatedVerb = `${selectedPerson}${selectedTense.tense.trim()}${wordInVerb}${
+      const tenseInVerb =
+        selectedTense.tense === "e" ? "" : selectedTense.tense;
+
+      const newConjugatedVerb = `${selectedPerson}${tenseInVerb.trim()}${wordInVerb}${
         selectedPerson2.person2
       }`;
 

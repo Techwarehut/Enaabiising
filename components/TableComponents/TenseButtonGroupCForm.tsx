@@ -87,12 +87,12 @@ const TenseButtonGroupCForm: React.FC<ButtonGroupProps> = ({
                 if (!allowedActiveRows) handleRowClick(rowIndex); // Pass the same row index
 
                 if (isSpecial) {
-                  setSelectedTense(" ", time);
+                  setSelectedTense(label, time); // Set tense
                   const newWord = getUpdatedWord(selectedWord);
 
                   setWordInVerb(newWord);
                 } else {
-                  setSelectedTense(label, time); // Set tense
+                  setSelectedTense(`${label}-`, time); // Set tense
                 }
               }}
               disabled={
