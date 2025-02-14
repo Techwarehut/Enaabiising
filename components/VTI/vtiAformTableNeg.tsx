@@ -64,7 +64,7 @@ const VtiFormATableNeg: React.FC<TableProps> = ({
             <th className="border border-black"> </th>
             <th className="border border-black">Person</th>
             <th className="border border-black">Tense</th>
-            <th className="border border-black">VAI</th>
+            <th className="border border-black">VTI</th>
             <th className="border border-black">Person</th>
           </tr>
         </thead>
